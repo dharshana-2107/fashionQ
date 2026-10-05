@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Semantic Fashion Recommendation System
 
 Natural-language, multilingual product search over the Amazon Reviews 2023
@@ -115,3 +116,6 @@ eval/        evaluation (phase 6)
 demo/        Streamlit UI (phase 4)
 data/        downloaded dataset files (git-ignored)
 ```
+=======
+# fashionQ
+>>>>>>> 43291e636a6e11c772926c2dbcad979238b87c9b
