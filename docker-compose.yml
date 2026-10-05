@@ -1,0 +1,53 @@
+# Phase 0: infrastructure only.
+# Your own services (catalog, search, indexer) get added here in later phases.
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: fr-postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-fashion}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-fashion}
+      POSTGRES_DB: ${POSTGRES_DB:-fashion}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-fashion} -d ${POSTGRES_DB:-fashion}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  redis:
+    image: redis:7
+    container_name: fr-redis
+    # appendonly = write every change to disk so stream events survive a restart
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  qdrant:
+    # Tip: pin an exact version (e.g. qdrant/qdrant:v1.x.y) once things work.
+    image: qdrant/qdrant:latest
+    container_name: fr-qdrant
+    ports:
+      - "${QDRANT_HTTP_PORT:-6333}:6333"   # REST API + web dashboard
+      - "${QDRANT_GRPC_PORT:-6334}:6334"   # gRPC (faster client, optional)
+    volumes:
+      - qdrantdata:/qdrant/storage
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  redisdata:
+  qdrantdata:

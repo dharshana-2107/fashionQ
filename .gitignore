@@ -1,0 +1,11 @@
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+data/*
+!data/.gitkeep
+models_cache/
+.DS_Store
+.idea/
+.vscode/
