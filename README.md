@@ -1,6 +1,6 @@
 # FashionQ: multilingual semantic fashion search with a live catalog
 
-Ask for clothes the way you'd ask a friend, in English, தமிழ் or हिन्दी: *"outfit for the beach this summer"*, *"सर्दियों के लिए गर्म जैकेट"*, *"men's wedding outfit under $60"*. FashionQ understands the request with an LLM, splits outfits into pieces, retrieves products with hybrid semantic search, reranks them with a cross-encoder, and keeps the index in sync with the catalog in near real time through Postgres change-data-capture.
+Ask for clothes the way you'd ask a friend, in English, தமிழ் or हिन्दी: *"outfit for the beach this summer"*, *"सर्दियों के लिए गर्म जैकेट"*, *"men's wedding outfit under $60"*. FashionQ understands the request with an LLM, parses the input query, retrieves products with hybrid semantic search, reranks them with a cross-encoder, and keeps the index in sync with the catalog in near real time through Postgres change-data-capture.
 
 Built on 25,000 real products from the **Amazon Reviews 2023 (McAuley Lab) Amazon_Fashion** dataset.
 
@@ -24,50 +24,7 @@ Built on 25,000 real products from the **Amazon Reviews 2023 (McAuley Lab) Amazo
 
 ## Architecture
 
-```mermaid
-%%{init: {"theme": "base", "themeVariables": {"fontSize": "16px", "primaryColor": "#ffffff", "secondaryColor": "#ffffff", "tertiaryColor": "#ffffff", "mainBkg": "#ffffff", "nodeBorder": "#1F2A44", "primaryTextColor": "#1F2A44", "primaryBorderColor": "#1F2A44", "lineColor": "#5B6478", "clusterBkg": "#ffffff", "clusterBorder": "#1F2A44", "titleColor": "#1F2A44", "edgeLabelBackground": "#ffffff"}}}%%
-flowchart LR
-    subgraph CLIENTS["<b>CLIENTS</b>"]
-        direction TB
-        UI["Streamlit demo<br/>:8501"]
-        ADM["Adminer / SQL /<br/>data loader"]
-    end
-
-    subgraph SERVICES["<b>SERVICES</b>"]
-        direction TB
-        SEARCH["Search service<br/>FastAPI :8000"]
-        CAT["Catalog service<br/>FastAPI :8001"]
-        RELAY["Outbox relay"]
-        WORKER["Indexer worker"]
-    end
-
-    subgraph DATA["<b>DATA</b>"]
-        direction TB
-        RS[("Redis<br/>stream + cache")]
-        QD[("Qdrant<br/>dense + sparse vectors")]
-        PG[("PostgreSQL<br/>catalog + outbox")]
-    end
-
-    LLM{{"LLM<br/>via OpenRouter"}}
-
-    UI -->|search| SEARCH
-    UI -->|add / edit / review| CAT
-    ADM -->|write| PG
-    SEARCH -->|parse query| LLM
-    SEARCH -->|cache parses| RS
-    SEARCH -->|hybrid search| QD
-    CAT -->|write| PG
-    RELAY -->|poll outbox| PG
-    RELAY -->|publish events| RS
-    RS -->|consumer group| WORKER
-    WORKER -->|read product| PG
-    WORKER -->|upsert / delete| QD
-
-    classDef box fill:#ffffff,stroke:#1F2A44,stroke-width:1.5px,color:#1F2A44;
-    class UI,ADM,SEARCH,CAT,RELAY,WORKER,RS,QD,PG,LLM box;
-    style CLIENTS fill:#ffffff,stroke:#1F2A44,stroke-width:1.5px,color:#1F2A44
-    style SERVICES fill:#ffffff,stroke:#1F2A44,stroke-width:1.5px,color:#1F2A44
-    style DATA fill:#ffffff,stroke:#1F2A44,stroke-width:1.5px,color:#1F2A44
+```[Architecture diagram](architecture.png)
 ```
 
 Postgres triggers write every catalog change into an outbox table in the same transaction; the relay and the worker turn those rows into index updates (details in [technologies.md](technologies.md)).
@@ -271,9 +228,9 @@ fashionQ/
 - **Coverage.** About 9% of products are LLM-enriched; the rest rely on rules and embeddings, so occasion and season tags are thinner for them. Only 20% of products have a price.
 - **Catalog gaps.** Even at 25,000 products, some requirements (e.g. men's formalwear) have limited inventory.
 - **Latency.** About 4.5 s per uncached search on a laptop, dominated by the cross-encoder.
-- **Free-tier LLM.** Models can be busy or rate-limited; mitigated by the fallback chain, caching and plain-search fallback.
+- **Free-tier LLM.** If a model is unavailable or rate-limited,the system uses a backup model,cached results, or standard search.
 - **Simplifications.** No authentication on the catalog API; reviews update statistics but review text isn't stored yet.
-## Path to production
+## Production Scale considerations
 
 - **Security:** authentication on the catalog API; seller/admin tools and supplier feeds call the same endpoints.
 - **Enrichment:** LLM-enrich new arrivals in the worker with a paid, reliable model.
