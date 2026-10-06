@@ -95,7 +95,7 @@ flowchart LR
 ```
 
 1. **Load.** `scripts/load_catalog.py` streams the dataset in three passes and keeps the 25,000 most-reviewed products, with review statistics (count, average, Bayesian rating, verified ratio, rating histogram) and the most helpful review samples.
-2. **Enrich (optional).** `scripts/bulk_enrich.py` asks an LLM for structured attributes (category, gender, occasions, seasons, colors, materials, style, fit, keywords, review summary), validated against fixed vocabularies. About 2,200 products are LLM-enriched; all 25,000 get **rule-based enrichment** from titles and Amazon's Department field.
+2. **Enrich.** `scripts/bulk_enrich.py` asks an LLM for structured attributes (category, gender, occasions, seasons, colors, materials, style, fit, keywords, review summary), validated against fixed vocabularies. About 2,200 products are LLM-enriched; all 25,000 get **rule-based enrichment** from titles and Amazon's Department field.
 3. **Index.** `scripts/bulk_index.py` builds one text document per product, embeds it with BGE-M3 (dense and sparse) and upserts it to Qdrant with a payload for filtering and ranking. It is resumable and hash-based: unchanged products are skipped, and payload-only changes don't re-embed.
 
 ### 2. Online: answering a query
@@ -154,7 +154,7 @@ Example of the LLM's search plan:
 
 **Metrics**
 
-- **P@5:** share of the top 5 results that are relevant (right category).
+- **P@5:** share of the top 5 results that are relevant to the query.
 - **nDCG@10:** ranking quality with graded relevance (2 = right category *and* key attribute such as "winter", "running", "formal"; 1 = category only), against an ideal list of ten perfect results.
 - **Constraint accuracy:** results obeying an explicit price or gender limit (items with unknown price or gender are skipped).
 - **Multilingual parity:** Tamil/Hindi P@5 as a share of the same need's English P@5.
@@ -174,7 +174,7 @@ Example of the LLM's search plan:
 - **Qdrant hybrid search:** ≈ 0.02 s over 25,000 products
 - **Rerank:** ≈ 4.5 s, the main cost
 - **Reranker tuning:** going from 40 candidates × 512 tokens to 24 × 256 made it **2.7× faster at the same P@5 and nDCG**
-- **Hardware limit:** on an M2 the cross-encoder costs about 70 ms per pair (fp16 gave no speed-up on MPS); on a server GPU this stage would take a fraction of a second
+- **Hardware limit:** on an M2 the cross-encoder costs about 70 ms per pair; on a server GPU this stage would take a fraction of a second
 
 ---
 
@@ -182,9 +182,9 @@ Example of the LLM's search plan:
 
 ### Prerequisites
 
-- macOS (Apple Silicon) or Linux; Python 3.12; Docker Desktop
+- Python 3.12; Docker Desktop
 - ~10 GB disk (models + data); 16 GB RAM recommended
-- An OpenRouter API key (free tier works), or a local Ollama
+- An OpenRouter API key, or a local Ollama
 
 ### Setup
 
@@ -208,7 +208,7 @@ python -m scripts.install_triggers
 
 ```env
 LLM_BASE_URL=https://openrouter.ai/api/v1
-LLM_API_KEY=sk-or-v1-...
+LLM_API_KEY=sk...
 LLM_MODEL=nvidia/nemotron-3-super-120b-a12b:free
 LLM_TIMEOUT=60
 LLM_JSON_MODE=true
@@ -253,25 +253,15 @@ python -m eval.run_eval --only jacket_ta # one query in detail
 
 ```
 fashionQ/
-├── common/                 # shared building blocks
-│   ├── config.py           # settings from .env
-│   ├── db.py               # SQLAlchemy models + engine
-│   ├── schemas.py          # attribute vocabularies + validation
-│   ├── llm.py              # LLM client (retries, JSON parsing)
-│   ├── embedder.py         # BGE-M3 dense + sparse
-│   ├── vectorstore.py      # Qdrant: collections, alias, filters, hybrid search
-│   ├── events.py           # Redis Streams helpers
-│   ├── gpu.py              # one GPU lock per process (MPS is not thread-safe)
-│   └── device.py           # cuda / mps / cpu selection
+├── common/               # shared: config, DB, embedder, Qdrant, LLM client, events
 ├── services/
-│   ├── search/             # parser (LLM), pipeline, reranker, FastAPI app
-│   ├── catalog/            # catalog FastAPI app, outbox relay
-│   └── indexer/            # document builder, category + attribute rules, enrichment, worker
-├── scripts/                # setup, data loading, enrichment, bulk indexing, triggers
-├── eval/                   # queries.json, run_eval.py, results.md
-├── demo/app.py             # Streamlit UI
-├── .streamlit/config.toml  # light theme
-└── docker-compose.yml
+│   ├── search/           # search service: LLM query parsing, retrieval, reranking
+│   ├── catalog/          # catalog service + outbox relay (Postgres → Redis)
+│   └── indexer/          # product documents, rule layer, enrichment, indexer worker
+├── scripts/              # setup, data loading, enrichment, bulk indexing, triggers
+├── eval/                 # test queries, evaluation script, results
+├── demo/                 # Streamlit UI
+└── docker-compose.yml    # Postgres, Redis, Qdrant, Adminer
 ```
 
 ---
@@ -279,28 +269,20 @@ fashionQ/
 ## Known limitations
 
 - **Coverage.** About 9% of products are LLM-enriched; the rest rely on rules and embeddings, so occasion and season tags are thinner for them. Only 20% of products have a price.
-- **Catalog gaps.** Even at 25,000 products, some needs (e.g. men's formalwear) have limited inventory.
+- **Catalog gaps.** Even at 25,000 products, some requirements (e.g. men's formalwear) have limited inventory.
 - **Latency.** About 4.5 s per uncached search on a laptop, dominated by the cross-encoder.
 - **Free-tier LLM.** Models can be busy or rate-limited; mitigated by the fallback chain, caching and plain-search fallback.
-- **Simplifications.** No authentication on the catalog API; reviews update statistics but review text isn't stored yet; no MMR diversification.
-
+- **Simplifications.** No authentication on the catalog API; reviews update statistics but review text isn't stored yet.
 ## Path to production
 
-- **Authentication and validation** on the catalog API; product sources become seller/admin UIs and supplier feeds calling the same endpoints.
-- **LLM enrichment of new arrivals** in the worker, using a paid, reliable model (a few dollars per thousand products).
-- **Latency:** the reranker on a GPU server or a distilled reranker, ONNX/quantization, and result caching for popular queries.
-- **Scale:** several workers in the same consumer group, Kafka at very high volume, and monitoring and alerts on outbox backlog, stream lag and dead letters.
-- **Quality:** human-labeled relevance judgments, click logs for learning-to-rank, and MMR for diversity.
-- **Zero-downtime model changes:** build `products_<model>_v2` beside v1 and switch the `products` alias.
+- **Security:** authentication on the catalog API; seller/admin tools and supplier feeds call the same endpoints.
+- **Enrichment:** LLM-enrich new arrivals in the worker with a paid, reliable model.
+- **Latency:** run the reranker on a GPU server, and cache popular queries.
+- **Scale:** multiple workers per consumer group, Kafka at high volume, alerts on backlog and dead letters.
+- **Quality:** human relevance labels, click-based learning-to-rank, MMR for diversity.
+- **Model updates:** build a v2 collection beside v1 and switch the alias, with zero downtime.
+- **Cloud (AWS):** RDS/Aurora PostgreSQL, ElastiCache for Redis, Qdrant on EKS or Qdrant Cloud, services on ECS/EKS, models on GPU instances or SageMaker, LLM via Bedrock, files on S3.
 
-## Acknowledgements
-
-- Dataset: *Amazon Reviews 2023*, McAuley Lab, UC San Diego: Hou et al., "Bridging Language and Items for Retrieval and Recommendation" (2024).
-- Models: BAAI BGE-M3 and bge-reranker-v2-m3; NVIDIA Nemotron; Alibaba Qwen.
-- Infrastructure: Qdrant, PostgreSQL, Redis, FastAPI, Streamlit.
-
-
----
 
 ## More technical details
 
