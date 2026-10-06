@@ -5,7 +5,7 @@ Ask for clothes the way you'd ask a friend, in English, தமிழ் or ह�
 Built on 25,000 real products from the **Amazon Reviews 2023 (McAuley Lab) Amazon_Fashion** dataset.
 
 
-| Multilingual query | Outfit query | Live catalog |
+| Multilingual query |  Outfit based query | Live catalog |
 |---|---|---|
 | ![Tamil query](tamil.png) | ![Formal outfit](formal.png) | ![Live catalog](live.png) |
 
