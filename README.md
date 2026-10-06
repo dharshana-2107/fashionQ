@@ -23,9 +23,8 @@ Built on 25,000 real products from the **Amazon Reviews 2023 (McAuley Lab) Amazo
 ---
 
 ## Architecture
+![Architecture diagram](architecture.png)
 
-```![Architecture diagram](architecture.png)
-```
 
 Postgres triggers write every catalog change into an outbox table in the same transaction; the relay and the worker turn those rows into index updates (details in [technologies.md](technologies.md)).
 
