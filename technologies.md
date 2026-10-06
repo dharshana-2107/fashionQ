@@ -23,20 +23,19 @@ The technical companion to the [README](README.md): what FashionQ is built with,
 
 ---
 
-## Models: what and why
+## Models used
 
-| Model | Role | Why this one |
+| Model | Role | Why this model |
 |---|---|---|
 | **BAAI/bge-m3** | Product and query embeddings | One model gives **both** dense vectors (meaning, 1024-dim) and sparse lexical weights (exact words) in a single pass. Strong multilingual quality across 100+ languages, so Tamil and Hindi queries match English product text without a translation step. Runs locally on an M2 GPU. |
 | **BAAI/bge-reranker-v2-m3** | Cross-encoder reranking of the top candidates | Reads query and product **together**, which is much sharper than comparing two separate vectors. It is multilingual like BGE-M3. Used only on ~24 candidates per slot to bound cost. |
 | **NVIDIA Nemotron 3 Super 120B** (OpenRouter, free tier) | Query understanding: translation, outfit slots, filters as JSON | Large enough to follow a JSON schema reliably and handle Tamil/Hindi. Requests go through an automatic fallback list of free models, so a busy model is invisible to users; parsed queries are cached in Redis, so a repeated query costs nothing. |
 | **Qwen 2.5 3B / 7B** (Ollama, local) | Batch product enrichment (Phase 2) | Free, local, no rate limits. Its systematic errors (see *Lessons learned*) led to the rule layer below. |
 
-**Why not one big LLM for everything?** Embedding search is fast and cheap per query; the LLM is used once per *new* query (then cached), never per product at search time.
 
 ---
 
-## Evolving catalog: keeping search in sync (CDC)
+## Evolving catalog
 
 ```mermaid
 %%{init: {"theme": "base", "themeVariables": {"fontSize": "16px", "primaryColor": "#ffffff", "secondaryColor": "#ffffff", "tertiaryColor": "#ffffff", "mainBkg": "#ffffff", "nodeBorder": "#1F2A44", "primaryTextColor": "#1F2A44", "primaryBorderColor": "#1F2A44", "lineColor": "#5B6478", "clusterBkg": "#ffffff", "clusterBorder": "#1F2A44", "titleColor": "#1F2A44", "edgeLabelBackground": "#ffffff"}}}%%
@@ -137,6 +136,17 @@ curl -X POST localhost:8001/products/<ASIN>/reviews -H 'content-type: applicatio
 - **Live catalog sidebar:** an add-product form and a live event feed ("embedded, searchable after 1.2 s" / "updated, no re-embedding"). Each event has actions: Find in search, add a 5★ or 1★ review, price −10%, remove.
 
 ---
+## Prompts
+| Prompt | File | Purpose | Model |
+|---|---|---|---|
+| Query parsing | `services/search/parser.py` | Query (any language) → English translation, outfit slots, filters | Nemotron 3 Super (OpenRouter) |
+| Product enrichment | `services/indexer/prompts.py` | Tag products with attributes for search and filtering | Qwen 2.5 (local) |
+
+- **Query parsing:** exact JSON shape, two worked examples (single item vs. outfit), and rules such as "never invent a price or gender".
+- **Enrichment:** batched (several products per call), attributes from the listing, reviews only for fit, sizing and the summary, shopper-style search keywords, and fixed vocabularies.
+- **Both:** strict JSON, Pydantic validation after the LLM, versioned prompts, and Redis caching of parsed queries.
+
+--- 
 
 ## Lessons learned (design decisions driven by data)
 
