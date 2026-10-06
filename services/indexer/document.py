@@ -13,6 +13,7 @@ import json
 from typing import Any
 
 from common.vectorstore import stable_hash
+from services.indexer.attribute_rules import rule_attributes
 from services.indexer.category_rules import fix_category
 
 # Bump this whenever you change build_document(): every product re-embeds on the
@@ -134,8 +135,24 @@ def _num(v: Any) -> float | None:
         return None
 
 
+def _merge(llm_vals: Any, rule_vals: list[str]) -> list[str]:
+    out = _lower_list(llm_vals)
+    return out + [v for v in rule_vals if v not in out]
+
+
+def _gender(a: dict, row: dict, rule_g: str | None) -> str | None:
+    """Explicit evidence (Department field, "Men's" in the title) beats the LLM's guess."""
+    if rule_g:
+        return rule_g
+    g = str(a.get("gender") or row.get("enr_gender") or "").lower()
+    return g if g and g != "unknown" else None
+
+
 def build_payload(row: dict, document: str) -> dict:
     a = _attrs(row)
+    r = rule_attributes(row.get("title"), _str_list(row.get("features")), _as_obj(row.get("details"), {}))
+    llm_styles = _lower_list(a.get("styles"))
+    formality = r["formality"] or ("formal" if "formal" in llm_styles else None)
     payload = {
         "parent_asin": row["parent_asin"],
         "title": row.get("title"),
@@ -145,12 +162,14 @@ def build_payload(row: dict, document: str) -> dict:
         "category": final_category(row),
         "llm_category": _llm_category(row),  # kept for debugging/eval
         "product_type": (a.get("product_type") or "").lower() or None,
-        "gender": (a.get("gender") or row.get("enr_gender") or "").lower() or None,
-        "occasions": _lower_list(a.get("occasions")),
-        "seasons": _lower_list(a.get("seasons")),
-        "colors": _lower_list(a.get("colors")),
-        "materials": _lower_list(a.get("materials")),
-        "styles": _lower_list(a.get("styles")),
+        "gender": _gender(a, row, r["gender"]),
+        # LLM tags first, then rule-derived tags fill the gaps (payload only, not embedded)
+        "occasions": _merge(a.get("occasions"), r["occasions"]),
+        "seasons": _merge(a.get("seasons"), r["seasons"]),
+        "colors": _merge(a.get("colors"), r["colors"]),
+        "materials": _merge(a.get("materials"), r["materials"]),
+        "styles": llm_styles,
+        "formality": formality,
         "fit": a.get("fit"),
         "review_summary": a.get("review_summary") or row.get("review_summary"),
         "bayes_rating": _num(row.get("bayes_rating")),

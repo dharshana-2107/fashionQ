@@ -26,7 +26,7 @@ from common.db import engine
 from services.indexer.document import build_document, build_payload
 
 SQL = """
-SELECT p.parent_asin, p.title, p.store, p.main_category, p.features, p.description,
+SELECT p.parent_asin, p.title, p.store, p.main_category, p.features, p.description, p.details,
        p.price, p.image_url, p.amazon_avg_rating, p.amazon_rating_count, p.is_active,
        e.attributes AS attrs, e.category AS enr_category, e.gender AS enr_gender,
        e.review_summary, e.model AS enr_model,
@@ -122,8 +122,14 @@ def main() -> None:
             if args.sleep:
                 time.sleep(args.sleep)
 
-    for asin, payload in to_repayload:
-        client.overwrite_payload(collection, payload=payload, points=[vs.point_id(asin)], wait=False)
+    if to_repayload:
+        t0 = time.time()
+        for i in range(0, len(to_repayload), 256):
+            ops = [vs.models.OverwritePayloadOperation(overwrite_payload=vs.models.SetPayload(
+                       payload=payload, points=[vs.point_id(asin)]))
+                   for asin, payload in to_repayload[i: i + 256]]
+            client.batch_update_points(collection, update_operations=ops, wait=True)
+        print(f"Updated payload of {len(to_repayload)} products in {time.time() - t0:.1f}s (no re-embedding)")
 
     gone = [a for a in load_inactive_asins() if a in existing]
     if gone:

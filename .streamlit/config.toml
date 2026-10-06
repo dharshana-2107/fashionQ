@@ -1,0 +1,11 @@
+# Light theme so the demo looks the same on every machine (and in screenshots).
+[theme]
+base = "light"
+primaryColor = "#1F2A44"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F4F5F9"
+textColor = "#1F2A44"
+font = "sans serif"
+
+[browser]
+gatherUsageStats = false

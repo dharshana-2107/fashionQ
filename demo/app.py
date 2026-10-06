@@ -124,7 +124,7 @@ if parsed:
     if parsed.get("min_price"):
         chips.append(f"over ${parsed['min_price']:g}")
     for key in ("occasions", "seasons", "colors"):
-        chips += parsed.get(key) or []
+        chips += [str(v).replace("_", " ") for v in (parsed.get(key) or [])]
     chips += [f"look for: {s['name']}" for s in parsed.get("slots", [])]
     src = {"cache": "from cache", "llm": f"parsed by {info.get('model', 'LLM')}"}.get(info.get("source"), "")
     st.markdown(
@@ -158,7 +158,8 @@ for slot in res.get("slots", []):
                 new = '<span class="fq-new">NEW</span>' if it.get("is_new") else ""
                 st.markdown(f'<div class="fq-title-txt">{esc(it.get("title"))}{new}</div>',
                             unsafe_allow_html=True)
-                price = f'<span class="fq-price">${it["price"]:.2f}</span>  ' if it.get("price") else ""
+                price = (f'<span class="fq-price">${it["price"]:.2f}</span>  ' if it.get("price")
+                         else "price not listed  ")
                 rating = (f'★ {it["avg_rating"]:.1f} ({it.get("review_count", 0):,})'
                           if it.get("avg_rating") else "")
                 st.markdown(f'<div class="fq-meta">{price}{rating}<br>{esc(it.get("category", ""))}</div>',

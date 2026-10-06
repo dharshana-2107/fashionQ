@@ -78,6 +78,8 @@ Rules:
 - A single item request ("red sneakers") -> exactly 1 slot.
 - An outfit / look / "what to wear" request -> 2 to 4 slots (e.g. top + bottom OR dress, footwear, one accessory).
 - Slot queries are short, concrete, in English, and include useful context (material, style, occasion).
+- Category hints: blazers, suits, tuxedos, waistcoats -> suits_formalwear; jackets and coats -> outerwear;
+  shirts, blouses, sweaters -> tops; trousers, pants, skirts, shorts -> bottoms; all shoes -> footwear.
 - Never invent a price or gender the user did not give or clearly imply.
 
 Example: "red running shoes for women under 50 dollars" ->

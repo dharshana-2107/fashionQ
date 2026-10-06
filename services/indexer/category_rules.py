@@ -44,7 +44,14 @@ _RULES: list[tuple[str, str]] = [
     ("activewear", r"\bsports?\s+bras?\b|\byoga (pants|shorts|leggings)\b|\btrack\s?suits?\b"
                    r"|\btrack (pants|jackets?)\b|\bathletic (shorts|pants)\b|\bbike shorts\b"
                    r"|\bcompression (shirts?|shorts|tights|leggings|pants)\b|\bcycling (jerseys?|shorts)\b"),
-    ("suits_formalwear", r"\bsuits?\b(?!\s*case)|\btuxedos?\b|\bblazers?\b|\bsport\s?coats?\b|\bwaistcoats?\b"),
+    ("suits_formalwear", r"\bsuits?\b(?!\s*case)|\bpants?\s?suits?\b|\bsuit sets?\b"
+                         r"|\btuxedos?\b(?!\s*(shirts?|cufflinks?|studs?|bow|ties?|shoes?|pants|trousers))"
+                         r"|\bblazers?\b|\bsport\s?coats?\b|\bwaistcoats?\b"),
+    # "suits" that aren't clothing suits: these longer phrases win over plain "suit"
+    ("other", r"\bbee(keep\w*)?\s+suits?\b|\bbeekeep\w*\b|\bsauna suits?\b|\bhazmat\b|\bcoveralls?\b"
+              r"|\bspace suits?\b"),
+    ("outerwear", r"\b(snow|rain|ski)\s?suits?\b"),
+    ("swimwear", r"\b(wet|dry)\s?suits?\b"),
     ("outerwear", r"\bjackets?\b|\bcoats?\b|\bparkas?\b|\bwindbreakers?\b|\braincoats?\b|\bpuffer\b|\banoraks?\b"
                   r"|\bponchos?\b|\bpea\s?coats?\b|\btrench\b|\bvests?\b"),
     ("headwear", r"\bhats?\b|\bbeanies?\b|\bcaps?\b(?!\s*(sleeves?|toe))|\bvisors?\b|\berets?\b|\bfedoras?\b"
@@ -55,7 +62,7 @@ _RULES: list[tuple[str, str]] = [
                     r"|\bkey\s?rings?\b|\bhair (clips?|ties|bands?|pins?|accessories)\b|\bscrunchies?\b"
                     r"|\bshirt stays?\b|\bshoe\s?laces?\b|\bshoe horns?\b|\bneck gaiters?\b|\bface masks?\b"
                     r"|\bhandkerchiefs?\b|\bpocket squares?\b|\blanyards?\b|\bwristbands?\b|\barm sleeves?\b"),
-    ("dresses", r"\bdress(es)?\b(?![\s-]*(shoes?|shirts?|socks?|pants|slacks|boots?|belts?|watch|sandals?|up\b))"
+    ("dresses", r"\bdress(es)?\b(?![\s-]*(shoes?|shirts?|socks?|pants|slacks|boots?|belts?|watch|sandals?|up\b|tuxedos?|suits?|vests?|coats?|jackets?|blazers?))"
                 r"|\bgowns?\b|\bsundress(es)?\b|\bjumpsuits?\b|\brompers?\b"),
     ("bottoms", r"\bjeans\b|\bpants\b|\btrousers\b|\bshorts\b|\bleggings\b|\bskirts?\b|\bjoggers\b|\bchinos\b"
                 r"|\bcapris?\b|\bculottes\b|\bsweatpants\b|\bboot\s?cut\b|\boveralls\b|\bslacks\b"),

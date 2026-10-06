@@ -27,8 +27,28 @@ log = logging.getLogger(__name__)
 
 W_RELEVANCE, W_RATING = 0.80, 0.15
 TAG_BOOST, MAX_TAG_BOOST = 0.04, 0.12
-CANDIDATES = 30   # per slot, before reranking
+CANDIDATES = 40   # per slot, before reranking
 MIN_RESULTS = 4   # relax filters below this
+
+# Formal queries: casual items sink, formal items rise (formality comes from title rules).
+FORMAL_BONUS, CASUAL_PENALTY = 0.10, 0.25
+OWN_CATEGORY_BONUS = 0.06  # shirts first in a "top" slot, then blazers/suits
+NO_PRICE_PENALTY = 0.05  # price was asked for, but this item has no listed price
+_FORMAL_QUERY = re.compile(r"\b(formal|office|business|meeting|interview|wedding|suit|blazer|tuxedo|gala|"
+                           r"conference|ceremony|professional|corporate)\b", re.I)
+_KIDS_QUERY = re.compile(r"\b(kids?|boys?|girls?|baby|babies|toddlers?|children|child|infants?|youth)\b", re.I)
+_FORMAL_OCCASIONS = {"formal", "work_office", "office", "work", "wedding", "business"}
+
+# A slot's category also searches closely related categories. E.g. the LLM files
+# a blazer under "tops", but our rules put blazers in "suits_formalwear".
+RELATED_CATEGORIES = {
+    "tops": ["tops", "outerwear", "suits_formalwear"],
+    "bottoms": ["bottoms"],  # suit sets crowded out real trousers
+    "outerwear": ["outerwear", "suits_formalwear", "tops"],
+    "suits_formalwear": ["suits_formalwear", "outerwear", "tops", "bottoms"],
+    "activewear": ["activewear", "tops", "bottoms"],
+    "dresses": ["dresses"],
+}
 
 
 def warmup(rerank: bool = True) -> None:
@@ -54,6 +74,23 @@ def _tag_boost(p: dict, pq: ParsedQuery | None) -> float:
     return min(b, MAX_TAG_BOOST)
 
 
+def is_formal_query(pq: ParsedQuery | None, raw_query: str) -> bool:
+    if pq is not None:
+        if _FORMAL_OCCASIONS & set(pq.occasions):
+            return True
+        text = " ".join([pq.english] + [s.query for s in pq.slots])
+    else:
+        text = raw_query
+    return bool(_FORMAL_QUERY.search(text or ""))
+
+
+def _style_adjust(p: dict, formal_query: bool) -> float:
+    if not formal_query:
+        return 0.0
+    f = p.get("formality")
+    return FORMAL_BONUS if f == "formal" else (-CASUAL_PENALTY if f == "casual" else 0.0)
+
+
 def _title_key(title: str) -> str:
     return re.sub(r"[^a-z0-9]+", " ", (title or "").lower()).strip()[:50]
 
@@ -70,29 +107,36 @@ def _rerank_query(slot: Slot, pq: ParsedQuery | None) -> str:
     return "; ".join(parts)
 
 
-def _retrieve(client, emb, slot: Slot, pq: ParsedQuery | None) -> tuple[list, list[str]]:
+def _retrieve(client, emb, slot: Slot, pq: ParsedQuery | None, raw_query: str) -> tuple[list, list[str]]:
     """Hybrid search with hard filters, relaxing category then gender if needed."""
+    text = raw_query + " " + (pq.english if pq else "") + " " + slot.query
+    adults_only = not _KIDS_QUERY.search(text)  # kids' items only when the query asks for them
     price = dict(min_price=pq.min_price, max_price=pq.max_price) if pq else {}
-    category = slot.category
+    category = RELATED_CATEGORIES.get(slot.category, [slot.category]) if slot.category else None
     gender = pq.gender if pq else None
     relaxed: list[str] = []
+    found: list = []          # strict results first, looser ones appended
+    seen: set = set()
     while True:
-        flt = vs.build_filter(category=category, gender=gender, **price)
-        hits = vs.search(client, emb, mode="hybrid", flt=flt, limit=CANDIDATES)
-        if len(hits) >= MIN_RESULTS:
-            return hits, relaxed
+        flt = vs.build_filter(category=category, gender=gender, adults_only=adults_only, **price)
+        for h in vs.search(client, emb, mode="hybrid", flt=flt, limit=CANDIDATES):
+            if h.id not in seen:
+                seen.add(h.id)
+                found.append(h)
+        if len(found) >= MIN_RESULTS:
+            return found[:CANDIDATES], relaxed
         if category:
-            relaxed.append(f"category '{category}'")
+            relaxed.append(f"category '{slot.category}'")
             category = None
         elif gender:
             relaxed.append(f"gender '{gender}'")
             gender = None
         else:
-            return hits, relaxed
+            return found, relaxed
 
 
 def _card(p: dict, score: float, rerank: float | None, slot_name: str) -> dict:
-    keep = ("parent_asin", "title", "store", "image_url", "price", "category", "gender",
+    keep = ("parent_asin", "title", "store", "image_url", "price", "category", "gender", "formality",
             "avg_rating", "review_count", "occasions", "seasons", "colors", "review_summary",
             "is_new", "indexed_at")
     card = {k: p.get(k) for k in keep if p.get(k) is not None}
@@ -127,7 +171,7 @@ def search(query: str, k: int = 6, use_llm: bool = True, use_rerank: bool = True
 
     t0 = time.time()
     client = vs.get_client()
-    per_slot = [_retrieve(client, e, s, pq) for s, e in zip(slots, embs)]
+    per_slot = [_retrieve(client, e, s, pq, query) for s, e in zip(slots, embs)]
     timings["search_ms"] = round((time.time() - t0) * 1000)
 
     # 3. rerank everything in one batch
@@ -152,6 +196,8 @@ def search(query: str, k: int = 6, use_llm: bool = True, use_rerank: bool = True
         timings["rerank_ms"] = round((time.time() - t0) * 1000)
 
     # 4. blend, dedupe, cut to k
+    formal_query = is_formal_query(pq, query)
+    price_asked = bool(pq and (pq.min_price or pq.max_price))
     seen_asins: set[str] = set()
     out_slots = []
     for slot, (hits, relaxed), rr in zip(slots, per_slot, rerank_scores):
@@ -160,7 +206,10 @@ def search(query: str, k: int = 6, use_llm: bool = True, use_rerank: bool = True
         for h, r in zip(hits, rr):
             p = h.payload or {}
             relevance = r if r is not None else h.score / max_hybrid
-            final = W_RELEVANCE * relevance + W_RATING * _rating_norm(p) + _tag_boost(p, pq)
+            final = (W_RELEVANCE * relevance + W_RATING * _rating_norm(p) + _tag_boost(p, pq)
+                     + _style_adjust(p, formal_query)
+                     + (OWN_CATEGORY_BONUS if slot.category and p.get("category") == slot.category else 0.0)
+                     - (NO_PRICE_PENALTY if price_asked and p.get("price") is None else 0.0))
             scored.append((final, r, p))
         scored.sort(key=lambda x: -x[0])
         results, seen_titles = [], set()
@@ -182,6 +231,7 @@ def search(query: str, k: int = 6, use_llm: bool = True, use_rerank: bool = True
         "parsed": pq.model_dump() if pq else None,
         "parse": parse_info,
         "reranked": use_rerank,
+        "formal_query": formal_query,
         "slots": out_slots,
         "timings": timings,
     }

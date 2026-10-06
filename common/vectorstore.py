@@ -152,26 +152,46 @@ def _as_list(v) -> list:
     return [str(x).lower() for x in (v if isinstance(v, (list, tuple, set)) else [v])]
 
 
+KIDS_GENDERS = ["kids", "girls", "boys", "baby"]
+
+
 def build_filter(category=None, gender=None, occasions=None, seasons=None, colors=None,
                  min_price: float | None = None, max_price: float | None = None,
-                 only_active: bool = True) -> models.Filter | None:
-    """Hard filters. List fields match if they share ANY value with the request."""
+                 only_active: bool = True, adults_only: bool = True) -> models.Filter | None:
+    """Hard filters. List fields match if they share ANY value with the request.
+
+    - gender "men"/"women" also matches unisex items.
+    - asking for kids/girls/boys matches every kids' label; otherwise (adults_only)
+      kids' items are excluded, so "formal outfit" never shows a toddler tee.
+    - price: only 20% of products have a price, so items WITHOUT a price are kept
+      (the pipeline ranks them slightly lower); items with a price must fit the range.
+    """
     must: list = []
+    must_not: list = []
     if only_active:
         must.append(models.FieldCondition(key="is_active", match=models.MatchValue(value=True)))
     if category:
         must.append(models.FieldCondition(key="category", match=models.MatchAny(any=_as_list(category))))
-    if gender:
-        genders = _as_list(gender)
-        if any(g in ("men", "women") for g in genders) and "unisex" not in genders:
+    genders = _as_list(gender)
+    if genders:
+        if any(g in KIDS_GENDERS for g in genders):
+            genders = sorted(set(genders) | set(KIDS_GENDERS))
+        elif "unisex" not in genders:
             genders.append("unisex")  # unisex items suit everyone
         must.append(models.FieldCondition(key="gender", match=models.MatchAny(any=genders)))
+    elif adults_only:
+        must_not.append(models.FieldCondition(key="gender", match=models.MatchAny(any=KIDS_GENDERS)))
     for key, val in (("occasions", occasions), ("seasons", seasons), ("colors", colors)):
         if val:
             must.append(models.FieldCondition(key=key, match=models.MatchAny(any=_as_list(val))))
     if min_price is not None or max_price is not None:
-        must.append(models.FieldCondition(key="price", range=models.Range(gte=min_price, lte=max_price)))
-    return models.Filter(must=must) if must else None
+        must.append(models.Filter(should=[
+            models.FieldCondition(key="price", range=models.Range(gte=min_price, lte=max_price)),
+            models.IsEmptyCondition(is_empty=models.PayloadField(key="price")),
+        ]))
+    if not must and not must_not:
+        return None
+    return models.Filter(must=must or None, must_not=must_not or None)
 
 
 # ---------------------------------------------------------------- search
