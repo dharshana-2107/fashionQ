@@ -4,11 +4,20 @@ Ask for clothes the way you'd ask a friend, in English, தமிழ் or ह�
 
 Built on 25,000 real products from the **Amazon Reviews 2023 (McAuley Lab) Amazon_Fashion** dataset.
 
+<p align="center">
+  <img src="docs/screenshots/tamil.png" width="850" alt="Tamil query"><br>
+  <em>Tamil query, understood as "outfit suitable for summer beach" and split into a top and a bottom</em>
+</p>
 
-| Multilingual query (Tamil) | Outfit query | Live catalog |
-|---|---|---|
-| ![Tamil query](tamil.png) | ![Formal outfit](formal.png) | ![Live catalog](live.png) |
+<p align="center">
+  <img src="docs/screenshots/formal_outfit.png" width="850" alt="Formal outfit query"><br>
+  <em>"Formal business outfit": suits, dress shirts and trousers, one row per outfit piece</em>
+</p>
 
+<p align="center">
+  <img src="docs/screenshots/live_catalog.png" width="850" alt="Live catalog"><br>
+  <em>Live catalog: a product added in the sidebar is searchable 1.2 s later, with a NEW badge</em>
+</p>
 ---
 
 ## Highlights
