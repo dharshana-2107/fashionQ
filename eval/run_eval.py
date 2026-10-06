@@ -42,7 +42,7 @@ from common.embedder import QUERY_MAX_TOKENS, get_embedder
 
 HERE = Path(__file__).parent
 K = 10
-RERANK_CANDIDATES = 40
+RERANK_CANDIDATES = 24
 KIDS = {"kids", "girls", "boys", "baby"}
 VARIANT_NAMES = {"A": "Dense only", "B": "Hybrid (dense + sparse)", "C": "Hybrid + rerank", "D": "Full system (LLM + rules)"}
 

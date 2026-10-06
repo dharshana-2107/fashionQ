@@ -15,7 +15,7 @@ from common.config import settings
 from common.gpu import GPU_LOCK
 from common.device import get_device, use_fp16
 
-MAX_LENGTH = 512
+MAX_LENGTH = 256
 
 
 class Reranker:

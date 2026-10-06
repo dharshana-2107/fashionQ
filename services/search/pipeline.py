@@ -27,7 +27,7 @@ log = logging.getLogger(__name__)
 
 W_RELEVANCE, W_RATING = 0.80, 0.15
 TAG_BOOST, MAX_TAG_BOOST = 0.04, 0.12
-CANDIDATES = 40   # per slot, before reranking
+CANDIDATES = 24   # per slot, before reranking
 MIN_RESULTS = 4   # relax filters below this
 
 # Formal queries: casual items sink, formal items rise (formality comes from title rules).
