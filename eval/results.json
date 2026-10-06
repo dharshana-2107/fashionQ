@@ -1,0 +1,5426 @@
+{
+ "generated": "2026-10-06T17:02:25",
+ "summary": {
+  "A": {
+   "name": "Dense only",
+   "queries": 26,
+   "p5": 0.8,
+   "ndcg10": 0.753,
+   "constraint_acc": 0.879,
+   "constraint_n": 132,
+   "parity": 0.721,
+   "p5_by_lang": {
+    "en": 0.867,
+    "hi": 0.6,
+    "ta": 0.7
+   },
+   "latency_p50_s": 0.191,
+   "latency_p90_s": 0.637
+  },
+  "B": {
+   "name": "Hybrid (dense + sparse)",
+   "queries": 26,
+   "p5": 0.785,
+   "ndcg10": 0.744,
+   "constraint_acc": 0.881,
+   "constraint_n": 126,
+   "parity": 0.742,
+   "p5_by_lang": {
+    "en": 0.844,
+    "hi": 0.6,
+    "ta": 0.7
+   },
+   "latency_p50_s": 0.102,
+   "latency_p90_s": 0.112
+  },
+  "C": {
+   "name": "Hybrid + rerank",
+   "queries": 26,
+   "p5": 0.831,
+   "ndcg10": 0.791,
+   "constraint_acc": 0.86,
+   "constraint_n": 136,
+   "parity": 0.8,
+   "p5_by_lang": {
+    "en": 0.889,
+    "hi": 0.75,
+    "ta": 0.65
+   },
+   "latency_p50_s": 9.745,
+   "latency_p90_s": 10.825
+  },
+  "D": {
+   "name": "Full system (LLM + rules)",
+   "queries": 26,
+   "p5": 1.0,
+   "ndcg10": 0.944,
+   "constraint_acc": 1.0,
+   "constraint_n": 136,
+   "parity": 1.0,
+   "p5_by_lang": {
+    "en": 1.0,
+    "hi": 1.0,
+    "ta": 1.0
+   },
+   "latency_p50_s": 12.424,
+   "latency_p90_s": 15.5,
+   "parse_rate": 1.0,
+   "stage_median_ms": {
+    "parse_ms": 2418,
+    "embed_ms": 262,
+    "search_ms": 24,
+    "rerank_ms": 9386
+   }
+  }
+ },
+ "per_query": {
+  "A": [
+   {
+    "id": "formal_outfit",
+    "lang": "en",
+    "group": null,
+    "q": "formal business outfit",
+    "p5": 0.8,
+    "ndcg10": 0.5388856921828065,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 1.1265289783477783,
+    "top": [
+     {
+      "title": "Women's Elegant Business Two Piece Office Lady Suit Set Work Blazer Pant (Suit Set-Light G",
+      "category": "suits_formalwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Women's 2 Piece Office Lady Business Suit Set Slim Fit Blazer Pant",
+      "category": "suits_formalwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "REPHYLLIS Women's Casual Boat Neck Slim Bodycon Business Party Work Pencil Dress Burgundy ",
+      "category": "dresses",
+      "price": null,
+      "gender": "women",
+      "grade": 0
+     },
+     {
+      "title": "Women's 2 Piece Office Lady Business Suit Set Slim Fit, No Color, Size No Size",
+      "category": "suits_formalwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Women's 2 Piece Business Suit Set Blazer and Pants for Office Lady Black",
+      "category": "suits_formalwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "jacket_en",
+    "lang": "en",
+    "group": "winter_jacket",
+    "q": "warm winter jacket",
+    "p5": 1.0,
+    "ndcg10": 0.9363792118010482,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 0.25638484954833984,
+    "top": [
+     {
+      "title": "FARVALUE Women's Winter Coat Thicken Puffer Jacket Warm Bubble Coat with Removable Hood",
+      "category": "outerwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Women Winter Warm Fleece Parka Thicken Jacket Hooded Down Coat Army Green US Size XL (Labe",
+      "category": "outerwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Uoiuxc Women's Hooded Winter Coat Warm Fleeced Lined Parka Long Jackets",
+      "category": "outerwear",
+      "price": 79.98,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "morecome Men Warm Stand Collar Slim Winter Zip Outerwear Jacket (XL, Blue)",
+      "category": "outerwear",
+      "price": 14.89,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Keevoom Men's Waterproof Ski Jacket Winter Warm Snow Coat Windproof Mountain Raincoat Snow",
+      "category": "outerwear",
+      "price": 37.99,
+      "gender": "men",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "jacket_hi",
+    "lang": "hi",
+    "group": "winter_jacket",
+    "q": "सर्दियों के लिए गर्म जैकेट",
+    "p5": 0.8,
+    "ndcg10": 0.7827392871477701,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 0.1489729881286621,
+    "top": [
+     {
+      "title": "JACKETOWN Men's Jacket Casual Zip Up Windbreaker Jackets Outwear Winter Padded Coats",
+      "category": "outerwear",
+      "price": 59.99,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "X-CHENG YQJYS Balaclava Ski Mask - Cold Weather Face Mask Motorcycle Neck Warmer or Tactic",
+      "category": "headwear",
+      "price": null,
+      "gender": null,
+      "grade": 0
+     },
+     {
+      "title": "Winter Warm Coats for Women Plus Size Hooded Jackets Parka Solid Thicken Jackets Long Cott",
+      "category": "outerwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "BALEAF Women's Thermal Winter Cycling Jacket Windproof Water Resistant Softshell Cold Weat",
+      "category": "outerwear",
+      "price": 54.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "FARVALUE Women's Winter Coat Thicken Puffer Jacket Warm Bubble Coat with Removable Hood",
+      "category": "outerwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "jacket_ta",
+    "lang": "ta",
+    "group": "winter_jacket",
+    "q": "குளிர்காலத்திற்கு சூடான ஜாக்கெட்",
+    "p5": 1.0,
+    "ndcg10": 0.933745776545611,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 0.10255980491638184,
+    "top": [
+     {
+      "title": "JACKETOWN Men's Jacket Casual Zip Up Windbreaker Jackets Outwear Winter Padded Coats",
+      "category": "outerwear",
+      "price": 59.99,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "BALEAF Women's Thermal Winter Cycling Jacket Windproof Water Resistant Softshell Cold Weat",
+      "category": "outerwear",
+      "price": 54.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Hooded Puffer Jackets for Boys and Girls – Lightweight and Packable – Autumn and Winter Co",
+      "category": "outerwear",
+      "price": 29.99,
+      "gender": "kids",
+      "grade": 2
+     },
+     {
+      "title": "Plus Size Warm Coats Jacket for Women,Warm Winter Cute Button Down Hooded Tops Teddy Coat ",
+      "category": "outerwear",
+      "price": 9.98,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "MAGCOMSEN Men's Winter Coats Water Resistant Snow Ski Jacket Fleece Lined Parka 4 Pockets",
+      "category": "outerwear",
+      "price": 61.98,
+      "gender": "men",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "beach_en",
+    "lang": "en",
+    "group": "beach",
+    "q": "outfit for the beach this summer",
+    "p5": 1.0,
+    "ndcg10": 0.9305687780632227,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 0.12636518478393555,
+    "top": [
+     {
+      "title": "Bhbuy Women Girls Summer Sun Beach Hat Large Brim Hand Woven Straw Hat",
+      "category": "headwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Prinbara Women's Casual Loose Sundress Long Dress Short Sleeve Split Maxi Dresses Summer B",
+      "category": "dresses",
+      "price": 34.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Happy Sailed Women Summer Halter Neck Dress Floral Print Bohemian Beach Dresses S-XL",
+      "category": "dresses",
+      "price": 22.09,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Beach Belle Swimsuits for All Women's Cerise Lingerie Swimdress 16 Multi",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "JQUEEN Fashion Harness Women Bikini Gold Link Beach Crossover Belly Body Chain Necklace",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "beach_ta",
+    "lang": "ta",
+    "group": "beach",
+    "q": "கோடை கடற்கரைக்கு ஏற்ற ஆடை",
+    "p5": 1.0,
+    "ndcg10": 0.7233971441479391,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 0.3606886863708496,
+    "top": [
+     {
+      "title": "BESTOYARD Captain Yacht Hat Cap Adult Costume Hat Sailor Navy Marine Admiral Hat for Hallo",
+      "category": "headwear",
+      "price": 11.99,
+      "gender": "unisex",
+      "grade": 1
+     },
+     {
+      "title": "Beach Belle Swimsuits for All Women's Cerise Lingerie Swimdress 16 Multi",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Greatrees Womens Beach Kimono Cardigan with Bohemian Floral Print Long Bikini Swimsuit Cov",
+      "category": "tops",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Columbia Women's PFG Super Bahama Long Sleeve Shirt, Breathable, UV Protection",
+      "category": "tops",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Akery Women's Floral Chiffon Kimono Cardigan Blouse Beach Cover up,XX-Large,Black",
+      "category": "tops",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "beach_hi",
+    "lang": "hi",
+    "group": "beach",
+    "q": "गर्मियों में समुद्र तट के लिए कपड़े",
+    "p5": 1.0,
+    "ndcg10": 0.8006937664098819,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 0.5022518634796143,
+    "top": [
+     {
+      "title": "Beach Belle Swimsuits for All Women's Cerise Lingerie Swimdress 16 Multi",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Columbia Women's PFG Super Bahama Long Sleeve Shirt, Breathable, UV Protection",
+      "category": "tops",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Greatrees Womens Kaftan Bohemian Floral Print Long Dresses Swimsuit Cover Up (Black-7-25, ",
+      "category": "dresses",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Greatrees Womens Beach Kimono Cardigan with Bohemian Floral Print Long Bikini Swimsuit Cov",
+      "category": "tops",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Greatrees Womens Kaftan Bohemian Floral Print Long Dresses Swimsuit Cover Up (Black-7-25-1",
+      "category": "dresses",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "running_en",
+    "lang": "en",
+    "group": "running",
+    "q": "running shoes for women",
+    "p5": 0.4,
+    "ndcg10": 0.2758471541718663,
+    "constraint_ok": 8,
+    "constraint_n": 10,
+    "seconds": 0.6663868427276611,
+    "top": [
+     {
+      "title": "Nike Women's Basketball Shoes",
+      "category": "footwear",
+      "price": null,
+      "gender": "women",
+      "grade": 1
+     },
+     {
+      "title": "Flat Foot Orthotics Women Insoles for Running Shoe Inserts Arch Support Insoles Pronation ",
+      "category": "footwear",
+      "price": null,
+      "gender": "unisex",
+      "grade": 2
+     },
+     {
+      "title": "WANDER Women's Athletic Running Socks 3-6 Pairs Thick Cushion Ankle Socks for Women Sport ",
+      "category": "underwear_socks",
+      "price": null,
+      "gender": "women",
+      "grade": 0
+     },
+     {
+      "title": "Ace Women's Running Socks, Small/Medium",
+      "category": "underwear_socks",
+      "price": null,
+      "gender": "women",
+      "grade": 0
+     },
+     {
+      "title": "shoe Laces, Soft Casual Flat Satin Ribbon Shoelaces Sneaker Shoestrings for Women Girls",
+      "category": "accessories",
+      "price": null,
+      "gender": "kids",
+      "grade": 0
+     }
+    ]
+   },
+   {
+    "id": "running_hi",
+    "lang": "hi",
+    "group": "running",
+    "q": "महिलाओं के लिए दौड़ने के जूते",
+    "p5": 0.2,
+    "ndcg10": 0.10030274924863172,
+    "constraint_ok": 9,
+    "constraint_n": 10,
+    "seconds": 0.16163396835327148,
+    "top": [
+     {
+      "title": "Running Socks for Women Men, Forcool Comfortable Cushion Performance Hiker Outdoor Athleti",
+      "category": "underwear_socks",
+      "price": null,
+      "gender": "unisex",
+      "grade": 0
+     },
+     {
+      "title": "Nimsruc Two Piece Outfits For Women Jogging Suits Casual Tracksuit",
+      "category": "suits_formalwear",
+      "price": 33.99,
+      "gender": "women",
+      "grade": 0
+     },
+     {
+      "title": "Nike Women's Basketball Shoes",
+      "category": "footwear",
+      "price": null,
+      "gender": "women",
+      "grade": 1
+     },
+     {
+      "title": "Velour Sweatsuits for Women Casual Zip-up Hoodies and Long Pants 2 Pieces Outfits Workout ",
+      "category": "tops",
+      "price": 37.99,
+      "gender": "women",
+      "grade": 0
+     },
+     {
+      "title": "icyzone Workout Shirts for Women - Yoga Tops Gym Clothes Running Exercise Athletic T-Shirt",
+      "category": "tops",
+      "price": 19.99,
+      "gender": "women",
+      "grade": 0
+     }
+    ]
+   },
+   {
+    "id": "running_ta",
+    "lang": "ta",
+    "group": "running",
+    "q": "பெண்கள் ஓடுவதற்கான காலணிகள்",
+    "p5": 0.0,
+    "ndcg10": 0.0,
+    "constraint_ok": 6,
+    "constraint_n": 9,
+    "seconds": 0.5464849472045898,
+    "top": [
+     {
+      "title": "Lolly Llama Running Necklace with Titanium Chain Runners Necklaces",
+      "category": "jewelry",
+      "price": null,
+      "gender": null,
+      "grade": 0
+     },
+     {
+      "title": "RUNNING GIRL Ombre Yoga Leggings Compatible for Nike Seamless Power Stretch High Waisted Y",
+      "category": "activewear",
+      "price": null,
+      "gender": "kids",
+      "grade": 0
+     },
+     {
+      "title": "Velour Sweatsuits for Women Casual Zip-up Hoodies and Long Pants 2 Pieces Outfits Workout ",
+      "category": "tops",
+      "price": 37.99,
+      "gender": "women",
+      "grade": 0
+     },
+     {
+      "title": "RUNNING GIRL Ombre Yoga Leggings Seamless Power Stretch High Waisted Yoga Pants for Women ",
+      "category": "activewear",
+      "price": null,
+      "gender": "kids",
+      "grade": 0
+     },
+     {
+      "title": "Sports Athletic Headbands for Women - Shiny Yoga Womens Sweatband Moisture Wicking Workout",
+      "category": "headwear",
+      "price": null,
+      "gender": "women",
+      "grade": 0
+     }
+    ]
+   },
+   {
+    "id": "wedding_en",
+    "lang": "en",
+    "group": "wedding",
+    "q": "men's wedding outfit",
+    "p5": 0.6,
+    "ndcg10": 0.7097402150304354,
+    "constraint_ok": 9,
+    "constraint_n": 10,
+    "seconds": 0.48688793182373047,
+    "top": [
+     {
+      "title": "MENDENG Elegant Triangle Geometry Pattern Woven Men's Tie Wedding Party Necktie",
+      "category": "accessories",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Silicone Wedding Rings - 3 Ring Pack Men's Silicone Wedding Ring Wedding Band - Black, Lig",
+      "category": "jewelry",
+      "price": null,
+      "gender": "men",
+      "grade": 0
+     },
+     {
+      "title": "INBLUE Men's Rhodium Plated Cufflinks Silver Tone Anchor Shirt Wedding",
+      "category": "accessories",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "HDE Men's Wedding Party 5-Pack of Solid Color Formal Adjustable Pre-Tied Tuxedo Bow Ties R",
+      "category": "accessories",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "6 Pack Mr and Mrs Hats Sets Included Bride and Groom Caps, Mr and Mrs Beer Bottle Coolies,",
+      "category": "headwear",
+      "price": 21.99,
+      "gender": "women",
+      "grade": 0
+     }
+    ]
+   },
+   {
+    "id": "wedding_hi",
+    "lang": "hi",
+    "group": "wedding",
+    "q": "शादी के लिए पुरुषों का आउटफिट",
+    "p5": 0.4,
+    "ndcg10": 0.45689918784525796,
+    "constraint_ok": 9,
+    "constraint_n": 10,
+    "seconds": 0.3384110927581787,
+    "top": [
+     {
+      "title": "Moda Di Raza Adjustable bow tie For Men| Classic bowties men pre-tied |Wedding and Formal ",
+      "category": "accessories",
+      "price": 8.99,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "OFFSTREAM Men's Party Costume - 2 Piece Casual Suit Outfit - Perfect for Parties, Hallowee",
+      "category": "costumes",
+      "price": 49.99,
+      "gender": "men",
+      "grade": 0
+     },
+     {
+      "title": "6 Pack Mr and Mrs Hats Sets Included Bride and Groom Caps, Mr and Mrs Beer Bottle Coolies,",
+      "category": "headwear",
+      "price": 21.99,
+      "gender": "women",
+      "grade": 0
+     },
+     {
+      "title": "Kajeer 6PCS Men's Bow Tie for Wedding Party - Solid Color Adjustable Pre Tied Bowties",
+      "category": "accessories",
+      "price": 8.99,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Silicone Wedding Rings - 3 Ring Pack Men's Silicone Wedding Ring Wedding Band - Black, Lig",
+      "category": "jewelry",
+      "price": null,
+      "gender": "men",
+      "grade": 0
+     }
+    ]
+   },
+   {
+    "id": "swim_en",
+    "lang": "en",
+    "group": "swimsuit",
+    "q": "women's swimsuit",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 10,
+    "constraint_n": 10,
+    "seconds": 0.21281218528747559,
+    "top": [
+     {
+      "title": "Womens One Piece Swimwear Swimsuits athletic Swimwear Swimsuit One Piece For women Blue Ch",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Womens Swimsuits 2 Piece Bathing Suits High Waisted Bikinis Printing Set for Women Black T",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Women’s Swimsuit Cover up,Silky T Shirt Button Midi Dress Kimono,Summer Bathing Suit Beach",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "CharmLeaks Womens Sport Swimsuit Water Aerobics Swimwear Lap Bathing Suit L Blue",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Simplicity Women's Vintage High Waist Swimsuit Swimwear Bikini Set, Red Bottom, L",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "swim_ta",
+    "lang": "ta",
+    "group": "swimsuit",
+    "q": "பெண்களுக்கான நீச்சல் உடை",
+    "p5": 0.8,
+    "ndcg10": 0.6332196796270029,
+    "constraint_ok": 10,
+    "constraint_n": 10,
+    "seconds": 0.13451695442199707,
+    "top": [
+     {
+      "title": "NEOSAN Womens Beach Cover Up Oversized Printed Swim Bikini Pool Wear Tunic A",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Womens Swimsuits 2 Piece Bathing Suits High Waisted Bikinis Printing Set for Women Black T",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Womens One Piece Swimwear Swimsuits athletic Swimwear Swimsuit One Piece For women Blue Ch",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Oryer Womens Chiffon Swimsuit Bathing Suit Beach Bikini Swimwear Cover Up Dress",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "icyzone Women's Workout T-Shirt - Gym Running Yoga Tops Athletic Shirts Raglan Short Sleev",
+      "category": "tops",
+      "price": 16.99,
+      "gender": "women",
+      "grade": 0
+     }
+    ]
+   },
+   {
+    "id": "wallet",
+    "lang": "en",
+    "group": null,
+    "q": "men's leather wallet",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 10,
+    "constraint_n": 10,
+    "seconds": 0.12261700630187988,
+    "top": [
+     {
+      "title": "LUUFAN Men's Genuine Leather Long Wallet Chain Wallet Card holder Wallet with Coin Pocket",
+      "category": "bags",
+      "price": 25.59,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "OB OURBAG Men's RFID BLOCKING Vintage Genuine Leather Bifold Wallet Checkbook, Dragon, Bro",
+      "category": "bags",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Large Men's Brown Metal Zip-around Genuine Leather Wallet",
+      "category": "bags",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Genuine Leather Bifold Wallets For Men Front Pocket Slim Mens Wallet 2 ID Window",
+      "category": "bags",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Mens Wallet by Moseeg Super Premium Full Grain Leather With RFID Protection Light Brown",
+      "category": "bags",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "earrings",
+    "lang": "en",
+    "group": null,
+    "q": "women's sterling silver earrings",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 0.5866861343383789,
+    "top": [
+     {
+      "title": "Pearl Stud Earrings for Women, Star Sterling Silver Women's Earrings from Swarovski Crysta",
+      "category": "jewelry",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Sterling Dangling Heart Earrings 925 Sterling Silver Double Twist Wave Long Tassels Drop D",
+      "category": "jewelry",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "2015 New 925 Sterling Silver Rhinestones Hoop Diamond Stud Earrings for Women",
+      "category": "jewelry",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "0.10 Carat (ctw) Sterling Silver Black & White Diamond Ladies Infinity Swirl Dangling Earr",
+      "category": "jewelry",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Women’s 925 Sterling Silver Butterfly Wing Dangle Hook Earrings, 0.78” x 1.29”",
+      "category": "jewelry",
+      "price": 9.48,
+      "gender": "women",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "work_shoes",
+    "lang": "en",
+    "group": null,
+    "q": "comfortable shoes for standing all day at work",
+    "p5": 0.8,
+    "ndcg10": 0.8236998933965709,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 0.1599409580230713,
+    "top": [
+     {
+      "title": "Dr. Comfort Men's Boss Diabetic Boots",
+      "category": "footwear",
+      "price": 121.8,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "OrthoComfoot Men's Plantar Fasciitis Slip-Ons Sneakers, Arch Support Walking Loafers, Foot",
+      "category": "footwear",
+      "price": 79.99,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Spira Men's Classic Walker 2",
+      "category": null,
+      "price": 139.95,
+      "gender": "men",
+      "grade": 0
+     },
+     {
+      "title": "Work Boots Men MOC TOE, Soft Toe 6” Full Grain Leather Breathable Water Resistant, Non Sli",
+      "category": "footwear",
+      "price": 99.99,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "OrthoComfoot Men's Slip On Loafers,Arch Support Boat Shoes for Plantar Fasciitis,Canvas Le",
+      "category": "footwear",
+      "price": 69.89,
+      "gender": "men",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "yoga_cheap",
+    "lang": "en",
+    "group": null,
+    "q": "yoga pants for women under $30",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 13,
+    "constraint_n": 13,
+    "seconds": 0.6373167037963867,
+    "top": [
+     {
+      "title": "Yogipace,2 Back Pockets,29\"/31\"/33\"/35\"/37\" Inseam, Women's Bootcut Yoga Pants Workout Pan",
+      "category": "bottoms",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Neonysweets Women Sports Yoga Workout Leggings Hidden Pocket",
+      "category": "bottoms",
+      "price": 23.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "REETOYO Women's High Waisted Boot Cut Yoga Pants Workout Bootleg Flares Pants with Inner P",
+      "category": "bottoms",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "iloveSIA Women's Yoga Pants Ultra Soft Cotton Stretch Leggings US Size M Black",
+      "category": "activewear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Novelty Workout Leggings High Waisted Yoga Pants for Women 4-Way Stretch Exercise Running ",
+      "category": "bottoms",
+      "price": 28.88,
+      "gender": "women",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "rain_boots_kids",
+    "lang": "en",
+    "group": null,
+    "q": "kids rain boots",
+    "p5": 0.2,
+    "ndcg10": 0.16331708457334124,
+    "constraint_ok": 5,
+    "constraint_n": 10,
+    "seconds": 0.670236349105835,
+    "top": [
+     {
+      "title": "Kids Raincoat, Rainbrace Girls Boys Carton Waterproof Hooded Rain Coat Jacket (Age for 2-4",
+      "category": "outerwear",
+      "price": null,
+      "gender": "kids",
+      "grade": 0
+     },
+     {
+      "title": "Toddler & Little Girls Youth Pink Polka Dot Rain Snow Boots w/Great Lining, Comfortable (1",
+      "category": "footwear",
+      "price": null,
+      "gender": "kids",
+      "grade": 2
+     },
+     {
+      "title": "Kids Raincoat, Rainbrace Children Carton Waterproof Hooded Rain Poncho Age 6-12,Pink Angel",
+      "category": "outerwear",
+      "price": null,
+      "gender": "kids",
+      "grade": 0
+     },
+     {
+      "title": "8 Pcs Rain Ponchos for Adults and Children, Waterproof Ponchos for Theme Parks, Rain Coats",
+      "category": "outerwear",
+      "price": 9.99,
+      "gender": "kids",
+      "grade": 0
+     },
+     {
+      "title": "Foxnovo Rain Ponchos DISPOSABLE Raincoats with Cap-5 PCS",
+      "category": "outerwear",
+      "price": null,
+      "gender": "unisex",
+      "grade": 0
+     }
+    ]
+   },
+   {
+    "id": "cap",
+    "lang": "en",
+    "group": null,
+    "q": "baseball cap for men",
+    "p5": 0.8,
+    "ndcg10": 0.8611375561264454,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 0.3762400150299072,
+    "top": [
+     {
+      "title": "Baseball Caps, Boomboom Women Men Unisex Mesh Snapback Hip Hop Flat Hats Baseball Caps",
+      "category": "headwear",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "EAGLE CREST mens Baseball",
+      "category": null,
+      "price": 22.99,
+      "gender": "men",
+      "grade": 0
+     },
+     {
+      "title": "N'Ice Caps Baby Boys and Toddler Authentic Construction Little Slugger Baseball Cap",
+      "category": "headwear",
+      "price": 13.99,
+      "gender": "kids",
+      "grade": 2
+     },
+     {
+      "title": "John Deere Boys' Baseball Cap",
+      "category": "headwear",
+      "price": 14.99,
+      "gender": "kids",
+      "grade": 2
+     },
+     {
+      "title": "Bride and Groom Wedding Baseball Caps Hats Embroidery Adjustable Black,White",
+      "category": "headwear",
+      "price": 19.99,
+      "gender": "unisex",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "sunglasses",
+    "lang": "en",
+    "group": null,
+    "q": "polarized sunglasses for driving",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 0.1682267189025879,
+    "top": [
+     {
+      "title": "Polaryte HD Vision Polarized Sunglasses For Men Women Driving Sports Golf UV Protection To",
+      "category": "eyewear",
+      "price": null,
+      "gender": "unisex",
+      "grade": 2
+     },
+     {
+      "title": "Costyle Yellow Night View Vision Polarized Sunglasses Glasses Driving Fishing Sports-(Yell",
+      "category": "eyewear",
+      "price": null,
+      "gender": "unisex",
+      "grade": 2
+     },
+     {
+      "title": "Night Driving Glasses for Men Women - SOXICK Polarized Driving Glasses Anti Glare Adjustab",
+      "category": "eyewear",
+      "price": null,
+      "gender": "unisex",
+      "grade": 2
+     },
+     {
+      "title": "SOXICK Night Driving Polarized Glasses for Men Women Anti Glare Rainy Safe HD Night Vision",
+      "category": "eyewear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Soxick Night Time Driving Glasses Anti Glare Polarized Night Vision Sunglasses",
+      "category": "eyewear",
+      "price": null,
+      "gender": "unisex",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "cocktail",
+    "lang": "en",
+    "group": null,
+    "q": "black cocktail dress for a party",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 0.13823199272155762,
+    "top": [
+     {
+      "title": "Zalalus Women's Lace Dresses for Cocktail Wedding Party Elegant High Neck Short Sleeves Ab",
+      "category": "dresses",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Simple Retro Cocktail Party Dress, Women's 1950s Mock Neck Cap Sleeve Lace Vintage Cocktai",
+      "category": "dresses",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Belle Poque Audrey Hepburn 50s Vintage Black Cocktail Party Dress BP091(S)",
+      "category": "dresses",
+      "price": null,
+      "gender": null,
+      "grade": 2
+     },
+     {
+      "title": "Miusol Women's Vintage Floral Lace Cocktail Evening Party Dress,Black and Purple,X-Large",
+      "category": "dresses",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "GRACE KARIN Women's Slim Backless Cocktail Pencil Dress for Party Wedding Black M",
+      "category": "dresses",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "socks",
+    "lang": "en",
+    "group": null,
+    "q": "cotton socks multipack",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 0.12985801696777344,
+    "top": [
+     {
+      "title": "Women's 6 Pair Pack Athletic Ankle Socks Mini Crew Percent Cotton Sports Casual Classic",
+      "category": "underwear_socks",
+      "price": 5.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Fun Colorful Socks Combed Cotton Stockings Mid Calf Art Patterned Funky Happy Sock Packs, ",
+      "category": "underwear_socks",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Bienvenu lady's 4 Pack Pattern Warm Cotton Crew Socks,Multicolor 3",
+      "category": "underwear_socks",
+      "price": null,
+      "gender": null,
+      "grade": 2
+     },
+     {
+      "title": "Happy Socks Men's Combed Cotton Socks, Pack of 4, Blue Assorted, Fits Sock Size 10-13, Sho",
+      "category": "underwear_socks",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Moisture wicking Socks Breathable Cotton Socks Soft socks Men&women 6 pack",
+      "category": "underwear_socks",
+      "price": 21.59,
+      "gender": "unisex",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "watch",
+    "lang": "en",
+    "group": null,
+    "q": "men's watch with leather strap",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 10,
+    "constraint_n": 10,
+    "seconds": 0.12538599967956543,
+    "top": [
+     {
+      "title": "Wonbee Men's Bamboo Wood Watches with Natural Cowhide Leather Strap and Infinity Design,Br",
+      "category": "watches",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Men's Watches Luxury Casual Dress Chronograph Calendar Waterproof Military Quartz Wristwat",
+      "category": "watches",
+      "price": 19.0,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "WIOR Walnut Wood Watches for Men Brown Leather Strap Wristwatches Genuine Leather Band wit",
+      "category": "watches",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Voeons Mens Watches Luminous Hands Auto Date Brown Leather Strap Watch",
+      "category": "watches",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Nixon Men's Quartz Watch The Ride Brown / Black A315562-00 with Leather Strap",
+      "category": "watches",
+      "price": 299.99,
+      "gender": "men",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "gym_tee",
+    "lang": "en",
+    "group": null,
+    "q": "gym t-shirt for men under $25",
+    "p5": 1.0,
+    "ndcg10": 0.8990684392693267,
+    "constraint_ok": 17,
+    "constraint_n": 20,
+    "seconds": 0.1351761817932129,
+    "top": [
+     {
+      "title": "Monsta Clothing Co. Men's MMA Fight (TapOrBleed-000) Fitness Gym T-Shirt",
+      "category": "tops",
+      "price": 21.97,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Mens Active T-Shirt - Quick-Dry Athletic Workout Training Stretch Crew Neck Short Sleeve T",
+      "category": "tops",
+      "price": 23.09,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Mens Active T-Shirt - Quick-Dry Athletic Workout Training Stretch V-Neck Short Sleeve Top ",
+      "category": "tops",
+      "price": 32.99,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "ZUEVI Muscle Tank Tops for Men Cut Open Sides Bodybuilding Vest Gym Workout Stringer T-Shi",
+      "category": "tops",
+      "price": 24.5,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "jeansian Men's Sport Dry Slim Fit Long Sleeves T-Shirt Tee Shirt Tshirt Tops Golf Tennis B",
+      "category": "tops",
+      "price": 16.99,
+      "gender": "men",
+      "grade": 1
+     }
+    ]
+   },
+   {
+    "id": "gloves",
+    "lang": "en",
+    "group": null,
+    "q": "winter gloves for cold weather",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 0.14263677597045898,
+    "top": [
+     {
+      "title": "OZERO Waterproof Winter Gloves Men Women -30 ℉ Cold Proof Touchscreen Anti Slip Silicon Pa",
+      "category": "accessories",
+      "price": 29.96,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Warm Gloves Cold Proof Winter Snow Work Glove Thermal Polar Fleece Insulated Lamb Wool for",
+      "category": "accessories",
+      "price": null,
+      "gender": "unisex",
+      "grade": 2
+     },
+     {
+      "title": "Winter Gloves, ONSON Touch Screen Gloves Black Gel Men & Women Gloves for Cycling, Running",
+      "category": "accessories",
+      "price": null,
+      "gender": "unisex",
+      "grade": 2
+     },
+     {
+      "title": "OZERO Winter Gloves, Coldproof Warm Insulated Glove with Deerskin Suede Leather Palm & The",
+      "category": "accessories",
+      "price": null,
+      "gender": "unisex",
+      "grade": 2
+     },
+     {
+      "title": "Yacht & Smith Wholesale Bulk Winter Gloves For Men Woman, Bulk Pack Warm Winter Thermal Gl",
+      "category": "accessories",
+      "price": 24.0,
+      "gender": "unisex",
+      "grade": 2
+     }
+    ]
+   }
+  ],
+  "B": [
+   {
+    "id": "formal_outfit",
+    "lang": "en",
+    "group": null,
+    "q": "formal business outfit",
+    "p5": 0.6,
+    "ndcg10": 0.6059848036189865,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 0.19709110260009766,
+    "top": [
+     {
+      "title": "HD African Attire Classic Rhinestone Agbada Suit for Man",
+      "category": "suits_formalwear",
+      "price": 81.99,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Women's Elegant Business Two Piece Office Lady Suit Set Work Blazer Pant (Suit Set-Light G",
+      "category": "suits_formalwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Women's 2 Piece Office Lady Business Suit Set Slim Fit Blazer Pant",
+      "category": "suits_formalwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Jacobson Hat Company Men's Deluxe Felt Derby (4.5 Inch Tall)",
+      "category": "headwear",
+      "price": 8.95,
+      "gender": "women",
+      "grade": 0
+     },
+     {
+      "title": "KW Products Love Wish Pearl Kit - Harvest Your Own Pearl - Divine Droplet Pendant",
+      "category": "jewelry",
+      "price": 4.49,
+      "gender": "women",
+      "grade": 0
+     }
+    ]
+   },
+   {
+    "id": "jacket_en",
+    "lang": "en",
+    "group": "winter_jacket",
+    "q": "warm winter jacket",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 0.10304093360900879,
+    "top": [
+     {
+      "title": "Uoiuxc Women's Hooded Winter Coat Warm Fleeced Lined Parka Long Jackets",
+      "category": "outerwear",
+      "price": 79.98,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "FARVALUE Women's Winter Coat Thicken Puffer Jacket Warm Bubble Coat with Removable Hood",
+      "category": "outerwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "MAGCOMSEN Women's Winter Coats Water Resistant Ski Snow Jacket Warm Fleece Jacket Parka Ra",
+      "category": "outerwear",
+      "price": 59.98,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Keevoom Men's Waterproof Ski Jacket Winter Warm Snow Coat Windproof Mountain Raincoat Snow",
+      "category": "outerwear",
+      "price": 37.99,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Women Winter Warm Fleece Parka Thicken Jacket Hooded Down Coat Army Green US Size XL (Labe",
+      "category": "outerwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "jacket_hi",
+    "lang": "hi",
+    "group": "winter_jacket",
+    "q": "सर्दियों के लिए गर्म जैकेट",
+    "p5": 0.8,
+    "ndcg10": 0.7827392871477701,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 0.14719200134277344,
+    "top": [
+     {
+      "title": "JACKETOWN Men's Jacket Casual Zip Up Windbreaker Jackets Outwear Winter Padded Coats",
+      "category": "outerwear",
+      "price": 59.99,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "X-CHENG YQJYS Balaclava Ski Mask - Cold Weather Face Mask Motorcycle Neck Warmer or Tactic",
+      "category": "headwear",
+      "price": null,
+      "gender": null,
+      "grade": 0
+     },
+     {
+      "title": "Winter Warm Coats for Women Plus Size Hooded Jackets Parka Solid Thicken Jackets Long Cott",
+      "category": "outerwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "BALEAF Women's Thermal Winter Cycling Jacket Windproof Water Resistant Softshell Cold Weat",
+      "category": "outerwear",
+      "price": 54.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "FARVALUE Women's Winter Coat Thicken Puffer Jacket Warm Bubble Coat with Removable Hood",
+      "category": "outerwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "jacket_ta",
+    "lang": "ta",
+    "group": "winter_jacket",
+    "q": "குளிர்காலத்திற்கு சூடான ஜாக்கெட்",
+    "p5": 1.0,
+    "ndcg10": 0.933745776545611,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 0.07865095138549805,
+    "top": [
+     {
+      "title": "JACKETOWN Men's Jacket Casual Zip Up Windbreaker Jackets Outwear Winter Padded Coats",
+      "category": "outerwear",
+      "price": 59.99,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "BALEAF Women's Thermal Winter Cycling Jacket Windproof Water Resistant Softshell Cold Weat",
+      "category": "outerwear",
+      "price": 54.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Hooded Puffer Jackets for Boys and Girls – Lightweight and Packable – Autumn and Winter Co",
+      "category": "outerwear",
+      "price": 29.99,
+      "gender": "kids",
+      "grade": 2
+     },
+     {
+      "title": "Plus Size Warm Coats Jacket for Women,Warm Winter Cute Button Down Hooded Tops Teddy Coat ",
+      "category": "outerwear",
+      "price": 9.98,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "MAGCOMSEN Men's Winter Coats Water Resistant Snow Ski Jacket Fleece Lined Parka 4 Pockets",
+      "category": "outerwear",
+      "price": 61.98,
+      "gender": "men",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "beach_en",
+    "lang": "en",
+    "group": "beach",
+    "q": "outfit for the beach this summer",
+    "p5": 0.8,
+    "ndcg10": 0.9052116356304492,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 0.11196780204772949,
+    "top": [
+     {
+      "title": "Bhbuy Women Girls Summer Sun Beach Hat Large Brim Hand Woven Straw Hat",
+      "category": "headwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Floerns Women's Two Piece Outfit Floral Off Shoulder Drawstring Crop Top and Skirt Set",
+      "category": "tops",
+      "price": 38.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Prinbara Women's Casual Loose Sundress Long Dress Short Sleeve Split Maxi Dresses Summer B",
+      "category": "dresses",
+      "price": 34.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "CISMARK Hawaiian Flower Leis Jumbo Necklace Bracelets Headband Set",
+      "category": "jewelry",
+      "price": 10.99,
+      "gender": "women",
+      "grade": 0
+     },
+     {
+      "title": "Happy Sailed Women Summer Halter Neck Dress Floral Print Bohemian Beach Dresses S-XL",
+      "category": "dresses",
+      "price": 22.09,
+      "gender": "women",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "beach_ta",
+    "lang": "ta",
+    "group": "beach",
+    "q": "கோடை கடற்கரைக்கு ஏற்ற ஆடை",
+    "p5": 1.0,
+    "ndcg10": 0.7233971441479391,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 0.10548996925354004,
+    "top": [
+     {
+      "title": "BESTOYARD Captain Yacht Hat Cap Adult Costume Hat Sailor Navy Marine Admiral Hat for Hallo",
+      "category": "headwear",
+      "price": 11.99,
+      "gender": "unisex",
+      "grade": 1
+     },
+     {
+      "title": "Beach Belle Swimsuits for All Women's Cerise Lingerie Swimdress 16 Multi",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Greatrees Womens Beach Kimono Cardigan with Bohemian Floral Print Long Bikini Swimsuit Cov",
+      "category": "tops",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Columbia Women's PFG Super Bahama Long Sleeve Shirt, Breathable, UV Protection",
+      "category": "tops",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Akery Women's Floral Chiffon Kimono Cardigan Blouse Beach Cover up,XX-Large,Black",
+      "category": "tops",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "beach_hi",
+    "lang": "hi",
+    "group": "beach",
+    "q": "गर्मियों में समुद्र तट के लिए कपड़े",
+    "p5": 1.0,
+    "ndcg10": 0.8006937664098819,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 0.08889484405517578,
+    "top": [
+     {
+      "title": "Beach Belle Swimsuits for All Women's Cerise Lingerie Swimdress 16 Multi",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Columbia Women's PFG Super Bahama Long Sleeve Shirt, Breathable, UV Protection",
+      "category": "tops",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Greatrees Womens Kaftan Bohemian Floral Print Long Dresses Swimsuit Cover Up (Black-7-25, ",
+      "category": "dresses",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Greatrees Womens Beach Kimono Cardigan with Bohemian Floral Print Long Bikini Swimsuit Cov",
+      "category": "tops",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Greatrees Womens Kaftan Bohemian Floral Print Long Dresses Swimsuit Cover Up (Black-7-25-1",
+      "category": "dresses",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "running_en",
+    "lang": "en",
+    "group": "running",
+    "q": "running shoes for women",
+    "p5": 0.6,
+    "ndcg10": 0.2521739332444666,
+    "constraint_ok": 10,
+    "constraint_n": 10,
+    "seconds": 0.10445594787597656,
+    "top": [
+     {
+      "title": "Nike Women's Basketball Shoes",
+      "category": "footwear",
+      "price": null,
+      "gender": "women",
+      "grade": 1
+     },
+     {
+      "title": "Product Stop, Inc [5-Pack] Workout & Running Headbands for Women. Power Through Your Worko",
+      "category": "headwear",
+      "price": null,
+      "gender": "women",
+      "grade": 0
+     },
+     {
+      "title": "Native Shoes, Women's Audrey, Adult Shoe",
+      "category": "footwear",
+      "price": 32.5,
+      "gender": "women",
+      "grade": 1
+     },
+     {
+      "title": "Flat Foot Orthotics Women Insoles for Running Shoe Inserts Arch Support Insoles Pronation ",
+      "category": "footwear",
+      "price": null,
+      "gender": "unisex",
+      "grade": 2
+     },
+     {
+      "title": "WANDER Women's Athletic Running Socks 3-6 Pairs Thick Cushion Ankle Socks for Women Sport ",
+      "category": "underwear_socks",
+      "price": null,
+      "gender": "women",
+      "grade": 0
+     }
+    ]
+   },
+   {
+    "id": "running_hi",
+    "lang": "hi",
+    "group": "running",
+    "q": "महिलाओं के लिए दौड़ने के जूते",
+    "p5": 0.2,
+    "ndcg10": 0.028381039213873666,
+    "constraint_ok": 6,
+    "constraint_n": 6,
+    "seconds": 0.10191512107849121,
+    "top": [
+     {
+      "title": "Running Socks for Women Men, Forcool Comfortable Cushion Performance Hiker Outdoor Athleti",
+      "category": "underwear_socks",
+      "price": null,
+      "gender": "unisex",
+      "grade": 0
+     },
+     {
+      "title": "Humble Chic Bar Ear Climbers - Single Slim Bar Minimal Modern Ear Cuff Crawler Stud Earrin",
+      "category": "jewelry",
+      "price": null,
+      "gender": null,
+      "grade": 0
+     },
+     {
+      "title": "CHARM IT! Retro Gumball Machine Charm",
+      "category": "jewelry",
+      "price": null,
+      "gender": null,
+      "grade": 0
+     },
+     {
+      "title": "Nimsruc Two Piece Outfits For Women Jogging Suits Casual Tracksuit",
+      "category": "suits_formalwear",
+      "price": 33.99,
+      "gender": "women",
+      "grade": 0
+     },
+     {
+      "title": "Nike Women's Basketball Shoes",
+      "category": "footwear",
+      "price": null,
+      "gender": "women",
+      "grade": 1
+     }
+    ]
+   },
+   {
+    "id": "running_ta",
+    "lang": "ta",
+    "group": "running",
+    "q": "பெண்கள் ஓடுவதற்கான காலணிகள்",
+    "p5": 0.0,
+    "ndcg10": 0.0,
+    "constraint_ok": 6,
+    "constraint_n": 9,
+    "seconds": 0.09878206253051758,
+    "top": [
+     {
+      "title": "Lolly Llama Running Necklace with Titanium Chain Runners Necklaces",
+      "category": "jewelry",
+      "price": null,
+      "gender": null,
+      "grade": 0
+     },
+     {
+      "title": "RUNNING GIRL Ombre Yoga Leggings Compatible for Nike Seamless Power Stretch High Waisted Y",
+      "category": "activewear",
+      "price": null,
+      "gender": "kids",
+      "grade": 0
+     },
+     {
+      "title": "Velour Sweatsuits for Women Casual Zip-up Hoodies and Long Pants 2 Pieces Outfits Workout ",
+      "category": "tops",
+      "price": 37.99,
+      "gender": "women",
+      "grade": 0
+     },
+     {
+      "title": "RUNNING GIRL Ombre Yoga Leggings Seamless Power Stretch High Waisted Yoga Pants for Women ",
+      "category": "activewear",
+      "price": null,
+      "gender": "kids",
+      "grade": 0
+     },
+     {
+      "title": "Sports Athletic Headbands for Women - Shiny Yoga Womens Sweatband Moisture Wicking Workout",
+      "category": "headwear",
+      "price": null,
+      "gender": "women",
+      "grade": 0
+     }
+    ]
+   },
+   {
+    "id": "wedding_en",
+    "lang": "en",
+    "group": "wedding",
+    "q": "men's wedding outfit",
+    "p5": 0.4,
+    "ndcg10": 0.5088197627289399,
+    "constraint_ok": 9,
+    "constraint_n": 10,
+    "seconds": 0.0989680290222168,
+    "top": [
+     {
+      "title": "Silicone Wedding Rings - 3 Ring Pack Men's Silicone Wedding Ring Wedding Band - Black, Lig",
+      "category": "jewelry",
+      "price": null,
+      "gender": "men",
+      "grade": 0
+     },
+     {
+      "title": "MENDENG Elegant Triangle Geometry Pattern Woven Men's Tie Wedding Party Necktie",
+      "category": "accessories",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "OFFSTREAM Men's Party Costume - 2 Piece Casual Suit Outfit - Perfect for Parties, Hallowee",
+      "category": "costumes",
+      "price": 49.99,
+      "gender": "men",
+      "grade": 0
+     },
+     {
+      "title": "OFFSTREAM Men's Party Costume - Tropical Bird Printed Outfit - Yellow, Green",
+      "category": "costumes",
+      "price": 44.99,
+      "gender": "men",
+      "grade": 0
+     },
+     {
+      "title": "INBLUE Men's Rhodium Plated Cufflinks Silver Tone Anchor Shirt Wedding",
+      "category": "accessories",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "wedding_hi",
+    "lang": "hi",
+    "group": "wedding",
+    "q": "शादी के लिए पुरुषों का आउटफिट",
+    "p5": 0.4,
+    "ndcg10": 0.45689918784525796,
+    "constraint_ok": 9,
+    "constraint_n": 10,
+    "seconds": 0.089447021484375,
+    "top": [
+     {
+      "title": "Moda Di Raza Adjustable bow tie For Men| Classic bowties men pre-tied |Wedding and Formal ",
+      "category": "accessories",
+      "price": 8.99,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "OFFSTREAM Men's Party Costume - 2 Piece Casual Suit Outfit - Perfect for Parties, Hallowee",
+      "category": "costumes",
+      "price": 49.99,
+      "gender": "men",
+      "grade": 0
+     },
+     {
+      "title": "6 Pack Mr and Mrs Hats Sets Included Bride and Groom Caps, Mr and Mrs Beer Bottle Coolies,",
+      "category": "headwear",
+      "price": 21.99,
+      "gender": "women",
+      "grade": 0
+     },
+     {
+      "title": "Kajeer 6PCS Men's Bow Tie for Wedding Party - Solid Color Adjustable Pre Tied Bowties",
+      "category": "accessories",
+      "price": 8.99,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Silicone Wedding Rings - 3 Ring Pack Men's Silicone Wedding Ring Wedding Band - Black, Lig",
+      "category": "jewelry",
+      "price": null,
+      "gender": "men",
+      "grade": 0
+     }
+    ]
+   },
+   {
+    "id": "swim_en",
+    "lang": "en",
+    "group": "swimsuit",
+    "q": "women's swimsuit",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 10,
+    "constraint_n": 10,
+    "seconds": 0.09763097763061523,
+    "top": [
+     {
+      "title": "Womens One Piece Swimwear Swimsuits athletic Swimwear Swimsuit One Piece For women Blue Ch",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "COCOSHIP Navy Blue and Blue Polka dot Retro Vintage One Piece Swimwear Swimsuit 46(FBA)",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Womens Swimsuits 2 Piece Bathing Suits High Waisted Bikinis Printing Set for Women Black T",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "MOOSKINI Womens Bikini Set Two Piece Halter Bathing Suits Swimsuit (M, Blue)",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Women’s Swimsuit Cover up,Silky T Shirt Button Midi Dress Kimono,Summer Bathing Suit Beach",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "swim_ta",
+    "lang": "ta",
+    "group": "swimsuit",
+    "q": "பெண்களுக்கான நீச்சல் உடை",
+    "p5": 0.8,
+    "ndcg10": 0.6332196796270029,
+    "constraint_ok": 10,
+    "constraint_n": 10,
+    "seconds": 0.09819817543029785,
+    "top": [
+     {
+      "title": "NEOSAN Womens Beach Cover Up Oversized Printed Swim Bikini Pool Wear Tunic A",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Womens Swimsuits 2 Piece Bathing Suits High Waisted Bikinis Printing Set for Women Black T",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Womens One Piece Swimwear Swimsuits athletic Swimwear Swimsuit One Piece For women Blue Ch",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Oryer Womens Chiffon Swimsuit Bathing Suit Beach Bikini Swimwear Cover Up Dress",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "icyzone Women's Workout T-Shirt - Gym Running Yoga Tops Athletic Shirts Raglan Short Sleev",
+      "category": "tops",
+      "price": 16.99,
+      "gender": "women",
+      "grade": 0
+     }
+    ]
+   },
+   {
+    "id": "wallet",
+    "lang": "en",
+    "group": null,
+    "q": "men's leather wallet",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 9,
+    "constraint_n": 9,
+    "seconds": 0.10172700881958008,
+    "top": [
+     {
+      "title": "LUUFAN Men's Genuine Leather Long Wallet Chain Wallet Card holder Wallet with Coin Pocket",
+      "category": "bags",
+      "price": 25.59,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "OB OURBAG Men's RFID BLOCKING Vintage Genuine Leather Bifold Wallet Checkbook, Dragon, Bro",
+      "category": "bags",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Men’s Real Leather RFID Blocking Slim Trifold Wallet with 8 Card, 1 ID Holder In Gift Box",
+      "category": "bags",
+      "price": 10.99,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Mens Wallet by Moseeg Super Premium Full Grain Leather With RFID Protection Light Brown",
+      "category": "bags",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Large Men's Brown Metal Zip-around Genuine Leather Wallet",
+      "category": "bags",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "earrings",
+    "lang": "en",
+    "group": null,
+    "q": "women's sterling silver earrings",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 0.10004997253417969,
+    "top": [
+     {
+      "title": "Bead Ball Earrings in Sterling Silver 2mm 3mm 4mm 5mm 6mm 7mm 8mm 9mm 10mm",
+      "category": "jewelry",
+      "price": 17.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "2015 New 925 Sterling Silver Rhinestones Hoop Diamond Stud Earrings for Women",
+      "category": "jewelry",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Pearl Stud Earrings for Women, Star Sterling Silver Women's Earrings from Swarovski Crysta",
+      "category": "jewelry",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Fashion Initial Earrings Dangle for Women - 14K Gold Plated Sterling Silver Initial Earrin",
+      "category": "jewelry",
+      "price": 13.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Sterling Dangling Heart Earrings 925 Sterling Silver Double Twist Wave Long Tassels Drop D",
+      "category": "jewelry",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "work_shoes",
+    "lang": "en",
+    "group": null,
+    "q": "comfortable shoes for standing all day at work",
+    "p5": 0.8,
+    "ndcg10": 0.8115558478722845,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 0.09888005256652832,
+    "top": [
+     {
+      "title": "Dr. Comfort Men's Boss Diabetic Boots",
+      "category": "footwear",
+      "price": 121.8,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Gravity Defyer Proven Pain Relief Women's G-Defy Ion Athletic Shoes for Knee Pain",
+      "category": "footwear",
+      "price": 99.95,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Spira Men's Classic Walker 2",
+      "category": null,
+      "price": 139.95,
+      "gender": "men",
+      "grade": 0
+     },
+     {
+      "title": "OrthoComfoot Men's Plantar Fasciitis Slip-Ons Sneakers, Arch Support Walking Loafers, Foot",
+      "category": "footwear",
+      "price": 79.99,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "OrthoComfoot Men's Loafers & Slip-ons,Plantar Fasciitis, Foot and Heel Pain Relief,Orthope",
+      "category": "footwear",
+      "price": 69.89,
+      "gender": "men",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "yoga_cheap",
+    "lang": "en",
+    "group": null,
+    "q": "yoga pants for women under $30",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 14,
+    "constraint_n": 14,
+    "seconds": 0.0959160327911377,
+    "top": [
+     {
+      "title": "Popular Basics women's skirted yoga pants-Black Large",
+      "category": "activewear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Yogipace,2 Back Pockets,29\"/31\"/33\"/35\"/37\" Inseam, Women's Bootcut Yoga Pants Workout Pan",
+      "category": "bottoms",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Neonysweets Women Sports Yoga Workout Leggings Hidden Pocket",
+      "category": "bottoms",
+      "price": 23.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "TOREEL Workout Leggings for Women with Pockets High Waisted Yoga Pants with Pockets for Wo",
+      "category": "bottoms",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Leggings Depot High Waist Printed Athletic Pants for Women with Pockets for Yoga, Workout,",
+      "category": "bottoms",
+      "price": 15.99,
+      "gender": "women",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "rain_boots_kids",
+    "lang": "en",
+    "group": null,
+    "q": "kids rain boots",
+    "p5": 0.2,
+    "ndcg10": 0.085143117641621,
+    "constraint_ok": 7,
+    "constraint_n": 10,
+    "seconds": 0.1116800308227539,
+    "top": [
+     {
+      "title": "Disposable Boot Covers Plastic Long Waterproof Shoes Cover Over The Knee Shoes Cover for M",
+      "category": "other",
+      "price": 12.99,
+      "gender": "unisex",
+      "grade": 0
+     },
+     {
+      "title": "Kids Raincoat, Rainbrace Girls Boys Carton Waterproof Hooded Rain Coat Jacket (Age for 2-4",
+      "category": "outerwear",
+      "price": null,
+      "gender": "kids",
+      "grade": 0
+     },
+     {
+      "title": "Durango Kids Lil' 8 Inch",
+      "category": null,
+      "price": null,
+      "gender": "kids",
+      "grade": 0
+     },
+     {
+      "title": "Hasbro Kids Umbrella, My Little Pony Toddler and Little Girl Rain Wear for Ages 3-6",
+      "category": "accessories",
+      "price": null,
+      "gender": "kids",
+      "grade": 0
+     },
+     {
+      "title": "Toddler & Little Girls Youth Pink Polka Dot Rain Snow Boots w/Great Lining, Comfortable (1",
+      "category": "footwear",
+      "price": null,
+      "gender": "kids",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "cap",
+    "lang": "en",
+    "group": null,
+    "q": "baseball cap for men",
+    "p5": 0.8,
+    "ndcg10": 0.8899541168509599,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 0.09110116958618164,
+    "top": [
+     {
+      "title": "Baseball Caps, Boomboom Women Men Unisex Mesh Snapback Hip Hop Flat Hats Baseball Caps",
+      "category": "headwear",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "AMERICAN NEEDLE Fender Guitars Officially Licensed Music Hat OSFA Adjustable New",
+      "category": "headwear",
+      "price": 23.17,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "EAGLE CREST mens Baseball",
+      "category": null,
+      "price": 22.99,
+      "gender": "men",
+      "grade": 0
+     },
+     {
+      "title": "N'Ice Caps Baby Boys and Toddler Authentic Construction Little Slugger Baseball Cap",
+      "category": "headwear",
+      "price": 13.99,
+      "gender": "kids",
+      "grade": 2
+     },
+     {
+      "title": "MEINICY 3PCS Classic Baseball Cap, Dad Hat Fits Men Women, All Cotton Made, Adjustable Low",
+      "category": "headwear",
+      "price": 19.99,
+      "gender": "unisex",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "sunglasses",
+    "lang": "en",
+    "group": null,
+    "q": "polarized sunglasses for driving",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 0.10586810111999512,
+    "top": [
+     {
+      "title": "Ewin E31 Polarized Sports Sunglasses with Case for Men Women Baseball Fishing Golf Driving",
+      "category": "eyewear",
+      "price": null,
+      "gender": "unisex",
+      "grade": 2
+     },
+     {
+      "title": "Polaryte HD Vision Polarized Sunglasses For Men Women Driving Sports Golf UV Protection To",
+      "category": "eyewear",
+      "price": null,
+      "gender": "unisex",
+      "grade": 2
+     },
+     {
+      "title": "Costyle Yellow Night View Vision Polarized Sunglasses Glasses Driving Fishing Sports-(Yell",
+      "category": "eyewear",
+      "price": null,
+      "gender": "unisex",
+      "grade": 2
+     },
+     {
+      "title": "SKYWAY Classic Polarized Aviator Sunglasses for Men and Women Mirrored UV400 Protection (B",
+      "category": "eyewear",
+      "price": null,
+      "gender": "unisex",
+      "grade": 2
+     },
+     {
+      "title": "SKYWAY Classic Polarized Aviator Sunglasses for Men and Women Mirrored UV400 Protection (O",
+      "category": "eyewear",
+      "price": null,
+      "gender": "unisex",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "cocktail",
+    "lang": "en",
+    "group": null,
+    "q": "black cocktail dress for a party",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 0.10325908660888672,
+    "top": [
+     {
+      "title": "Zalalus Women's Lace Dresses for Cocktail Wedding Party Elegant High Neck Short Sleeves Ab",
+      "category": "dresses",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Kearia Women Short Sleeve Deep V-Neck Sequin Split Bodycon Cocktail Party Dress Black XLar",
+      "category": "dresses",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Simple Retro Cocktail Party Dress, Women's 1950s Mock Neck Cap Sleeve Lace Vintage Cocktai",
+      "category": "dresses",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Miusol Women's Vintage Floral Lace Cocktail Evening Party Dress,Black and Purple,X-Large",
+      "category": "dresses",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "VETIOR Women's Vintage Scoop Neck Midi Dress Sleeveless A-line Cocktail Party Dress X-Larg",
+      "category": "dresses",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "socks",
+    "lang": "en",
+    "group": null,
+    "q": "cotton socks multipack",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 0.10826277732849121,
+    "top": [
+     {
+      "title": "Super Mario Socks 5-Pack 8bit Casual Crew Socks for Men Size 8-12",
+      "category": "underwear_socks",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Women's 6 Pair Pack Athletic Ankle Socks Mini Crew Percent Cotton Sports Casual Classic",
+      "category": "underwear_socks",
+      "price": 5.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Star Wars Toddler Socks 2T-4T",
+      "category": "underwear_socks",
+      "price": null,
+      "gender": "kids",
+      "grade": 2
+     },
+     {
+      "title": "Fun Colorful Socks Combed Cotton Stockings Mid Calf Art Patterned Funky Happy Sock Packs, ",
+      "category": "underwear_socks",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Tipi Toe Women's 6-Pack Ragg Cotton Crew Boot Socks, Size 9-11 Fits shoe 6-9, BT09-6",
+      "category": "underwear_socks",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "watch",
+    "lang": "en",
+    "group": null,
+    "q": "men's watch with leather strap",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 8,
+    "constraint_n": 8,
+    "seconds": 0.10661983489990234,
+    "top": [
+     {
+      "title": "ALPINE Hand Made Genuine Vintage Leather Watch Strap with Quick Release Steel Spring Bars ",
+      "category": "watches",
+      "price": 18.95,
+      "gender": "unisex",
+      "grade": 2
+     },
+     {
+      "title": "Wonbee Men's Bamboo Wood Watches with Natural Cowhide Leather Strap and Infinity Design,Br",
+      "category": "watches",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "ALPINE Genuine Leather watch band strap in shiny alligator grain finish -White, Black, Hon",
+      "category": "watches",
+      "price": 15.95,
+      "gender": "unisex",
+      "grade": 2
+     },
+     {
+      "title": "Voeons Mens Watches Luminous Hands Auto Date Brown Leather Strap Watch",
+      "category": "watches",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Carrie Hughes Men's Luxury Automatic Mechanical Brown Leather Watch CH338",
+      "category": "watches",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "gym_tee",
+    "lang": "en",
+    "group": null,
+    "q": "gym t-shirt for men under $25",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 13,
+    "constraint_n": 20,
+    "seconds": 0.09689497947692871,
+    "top": [
+     {
+      "title": "High Energy Long Sleeve Workout Shirts for Men 4 Pack Moisture Wicking Dry Fit for Running",
+      "category": "tops",
+      "price": 31.99,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Monsta Clothing Co. Men's MMA Fight (TapOrBleed-000) Fitness Gym T-Shirt",
+      "category": "tops",
+      "price": 21.97,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Mens Active T-Shirt - Quick-Dry Athletic Workout Training Stretch Crew Neck Short Sleeve T",
+      "category": "tops",
+      "price": 23.09,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "SPORT-TEK Men's PosiCharge Competitor Tee",
+      "category": "tops",
+      "price": 9.79,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Mens Active T-Shirt - Quick-Dry Athletic Workout Training Stretch V-Neck Short Sleeve Top ",
+      "category": "tops",
+      "price": 32.99,
+      "gender": "men",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "gloves",
+    "lang": "en",
+    "group": null,
+    "q": "winter gloves for cold weather",
+    "p5": 1.0,
+    "ndcg10": 0.92663607790064,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 0.10348320007324219,
+    "top": [
+     {
+      "title": "OZERO Waterproof Winter Gloves Men Women -30 ℉ Cold Proof Touchscreen Anti Slip Silicon Pa",
+      "category": "accessories",
+      "price": 29.96,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "SEYUFN Men Winter Glove Women Ski Mittens Mens Snowboarding Gloves Womens Waterproof Snow ",
+      "category": "accessories",
+      "price": 9.86,
+      "gender": "unisex",
+      "grade": 2
+     },
+     {
+      "title": "2ND DATE Kid's Winter Magic Gloves-Pack of 12",
+      "category": "accessories",
+      "price": 17.99,
+      "gender": "kids",
+      "grade": 2
+     },
+     {
+      "title": "Warm Gloves Cold Proof Winter Snow Work Glove Thermal Polar Fleece Insulated Lamb Wool for",
+      "category": "accessories",
+      "price": null,
+      "gender": "unisex",
+      "grade": 2
+     },
+     {
+      "title": "Yacht & Smith Wholesale Bulk Winter Gloves For Men Woman, Bulk Pack Warm Winter Thermal Gl",
+      "category": "accessories",
+      "price": 24.0,
+      "gender": "unisex",
+      "grade": 2
+     }
+    ]
+   }
+  ],
+  "C": [
+   {
+    "id": "formal_outfit",
+    "lang": "en",
+    "group": null,
+    "q": "formal business outfit",
+    "p5": 0.8,
+    "ndcg10": 0.5637884576902256,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 8.176141023635864,
+    "top": [
+     {
+      "title": "Women's 2 Piece Business Suit Set Blazer and Pants for Office Lady Black",
+      "category": "suits_formalwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Women's 2 Piece Office Lady Business Suit Set Slim Fit Blazer Pant",
+      "category": "suits_formalwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Women's 2 Piece Office Lady Business Suit Set Slim Fit, No Color, Size No Size",
+      "category": "suits_formalwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Women's Elegant Business Two Piece Office Lady Suit Set Work Blazer Pant (Suit Set-Light G",
+      "category": "suits_formalwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Fantaist Women's Summer Low Cut Retro Flower Print Career Formal Office Dress (XL, FT601-W",
+      "category": "dresses",
+      "price": null,
+      "gender": "women",
+      "grade": 0
+     }
+    ]
+   },
+   {
+    "id": "jacket_en",
+    "lang": "en",
+    "group": "winter_jacket",
+    "q": "warm winter jacket",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 10.412638902664185,
+    "top": [
+     {
+      "title": "Keevoom Men's Waterproof Ski Jacket Winter Warm Snow Coat Windproof Mountain Raincoat Snow",
+      "category": "outerwear",
+      "price": 37.99,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Plus Size Warm Coats Jacket for Women,Warm Winter Cute Button Down Hooded Tops Teddy Coat ",
+      "category": "outerwear",
+      "price": 9.98,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "MAGCOMSEN Women's Winter Coats Water Resistant Ski Snow Jacket Warm Fleece Jacket Parka Ra",
+      "category": "outerwear",
+      "price": 59.98,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Uoiuxc Women's Hooded Winter Coat Warm Fleeced Lined Parka Long Jackets",
+      "category": "outerwear",
+      "price": 79.98,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Little Donkey Andy Women's Winter Lightweight Warm Fleece Running Jacket Breathable Thumbh",
+      "category": "outerwear",
+      "price": 47.99,
+      "gender": "women",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "jacket_hi",
+    "lang": "hi",
+    "group": "winter_jacket",
+    "q": "सर्दियों के लिए गर्म जैकेट",
+    "p5": 1.0,
+    "ndcg10": 0.8532721558012799,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 10.12414288520813,
+    "top": [
+     {
+      "title": "PROSmart Men's Heated Jacket Waterproof Heating Jacket with Hood and 12Volt Battery Pack (",
+      "category": "outerwear",
+      "price": 129.99,
+      "gender": "men",
+      "grade": 1
+     },
+     {
+      "title": "Keevoom Men's Waterproof Ski Jacket Winter Warm Snow Coat Windproof Mountain Raincoat Snow",
+      "category": "outerwear",
+      "price": 37.99,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Winter Warm Coats for Women Plus Size Hooded Jackets Parka Solid Thicken Jackets Long Cott",
+      "category": "outerwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "MAGCOMSEN Women's Winter Coats Water Resistant Ski Snow Jacket Warm Fleece Jacket Parka Ra",
+      "category": "outerwear",
+      "price": 59.98,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Plus Size Warm Coats Jacket for Women,Warm Winter Cute Button Down Hooded Tops Teddy Coat ",
+      "category": "outerwear",
+      "price": 9.98,
+      "gender": "women",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "jacket_ta",
+    "lang": "ta",
+    "group": "winter_jacket",
+    "q": "குளிர்காலத்திற்கு சூடான ஜாக்கெட்",
+    "p5": 1.0,
+    "ndcg10": 0.9074250374176303,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 10.995975971221924,
+    "top": [
+     {
+      "title": "BALEAF Women's Thermal Winter Cycling Jacket Windproof Water Resistant Softshell Cold Weat",
+      "category": "outerwear",
+      "price": 54.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "PROSmart Men's Heated Jacket Waterproof Heating Jacket with Hood and 12Volt Battery Pack (",
+      "category": "outerwear",
+      "price": 129.99,
+      "gender": "men",
+      "grade": 1
+     },
+     {
+      "title": "Uoiuxc Women's Hooded Winter Coat Warm Fleeced Lined Parka Long Jackets",
+      "category": "outerwear",
+      "price": 79.98,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Winter Warm Coats for Women Plus Size Hooded Jackets Parka Solid Thicken Jackets Long Cott",
+      "category": "outerwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "MAGCOMSEN Women's Winter Coats Water Resistant Ski Snow Jacket Warm Fleece Jacket Parka Ra",
+      "category": "outerwear",
+      "price": 59.98,
+      "gender": "women",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "beach_en",
+    "lang": "en",
+    "group": "beach",
+    "q": "outfit for the beach this summer",
+    "p5": 1.0,
+    "ndcg10": 0.9363792118010482,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 7.930299758911133,
+    "top": [
+     {
+      "title": "Prinbara Women's Casual Loose Sundress Long Dress Short Sleeve Split Maxi Dresses Summer B",
+      "category": "dresses",
+      "price": 34.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "YIQ8 Summer Two Piece Outfits for Women - African Floral Print 2 Piece Crop Top Short Set ",
+      "category": "tops",
+      "price": 19.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Summer Womens Beach Wear Cover up Swimwear Beachwear Bikini",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Happy Sailed Women Summer Halter Neck Dress Floral Print Bohemian Beach Dresses S-XL",
+      "category": "dresses",
+      "price": 22.09,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "LILBETTER Women V-Neck Polka Dot Print Spaghetti Strap Boho Long Maxi Dresses",
+      "category": "dresses",
+      "price": 35.99,
+      "gender": "women",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "beach_ta",
+    "lang": "ta",
+    "group": "beach",
+    "q": "கோடை கடற்கரைக்கு ஏற்ற ஆடை",
+    "p5": 0.6,
+    "ndcg10": 0.4671034547999446,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 8.25508975982666,
+    "top": [
+     {
+      "title": "VARIOUS OCCASIONS: Perfect for beach volleyball, water aerobics, swimming, surfing, wakebo",
+      "category": null,
+      "price": null,
+      "gender": null,
+      "grade": 0
+     },
+     {
+      "title": "Akery Women's Floral Chiffon Kimono Cardigan Blouse Beach Cover up,XX-Large,Black",
+      "category": "tops",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "KOGMO Womens Short Sleeve Solid Basic Tunic Top Tee with Side Shirring",
+      "category": "tops",
+      "price": 15.99,
+      "gender": "women",
+      "grade": 1
+     },
+     {
+      "title": "4Pcs Hair Cutting Cape Umbrella Clock Waterproof Haircut Barber Salon Hair Catcher Hair Co",
+      "category": "accessories",
+      "price": 4.99,
+      "gender": "unisex",
+      "grade": 0
+     },
+     {
+      "title": "Cami-sunny Beach Wear Round-Neck Womens Sleeveless Soft Comfort Casual Dresses,Aquamarine-",
+      "category": "tops",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "beach_hi",
+    "lang": "hi",
+    "group": "beach",
+    "q": "गर्मियों में समुद्र तट के लिए कपड़े",
+    "p5": 1.0,
+    "ndcg10": 0.8579809428223729,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 7.838438987731934,
+    "top": [
+     {
+      "title": "Happy Sailed Women Summer Halter Neck Dress Floral Print Bohemian Beach Dresses S-XL",
+      "category": "dresses",
+      "price": 22.09,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "CHUNTIANRAN Women's 2023 Casual Loose Maxi Dress Summer Short Sleeve Beach Long Sundress T",
+      "category": "dresses",
+      "price": 34.98,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Ann Darling Womens 2023 Casual Summer Beach Dresses Floral Flared Party Dresses with Pocke",
+      "category": "dresses",
+      "price": 29.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Taydey Women's Swimwear Knitted Crochet Tunic Cover up / Beach Dress One Size Black",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "YIQ8 Summer Two Piece Outfits for Women - African Floral Print 2 Piece Crop Top Short Set ",
+      "category": "tops",
+      "price": 19.99,
+      "gender": "women",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "running_en",
+    "lang": "en",
+    "group": "running",
+    "q": "running shoes for women",
+    "p5": 0.2,
+    "ndcg10": 0.23124942365416867,
+    "constraint_ok": 8,
+    "constraint_n": 10,
+    "seconds": 9.341928958892822,
+    "top": [
+     {
+      "title": "Ace Women's Running Socks, Small/Medium",
+      "category": "underwear_socks",
+      "price": null,
+      "gender": "women",
+      "grade": 0
+     },
+     {
+      "title": "PUMA Women's Muse Sneaker",
+      "category": "footwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Aoczes 6 Pairs Women's Ankle Athletic Running Socks Thin Low Cut Sports Socks for Men",
+      "category": "underwear_socks",
+      "price": 6.99,
+      "gender": "women",
+      "grade": 0
+     },
+     {
+      "title": "WANDER Women's Athletic Running Socks 3-6 Pairs Thick Cushion Ankle Socks for Women Sport ",
+      "category": "underwear_socks",
+      "price": null,
+      "gender": "women",
+      "grade": 0
+     },
+     {
+      "title": "Pembrook Womens Athletic Socks - 6 Pairs Low Cut Socks Women | Cute Ankle socks for Women ",
+      "category": "underwear_socks",
+      "price": null,
+      "gender": "women",
+      "grade": 0
+     }
+    ]
+   },
+   {
+    "id": "running_hi",
+    "lang": "hi",
+    "group": "running",
+    "q": "महिलाओं के लिए दौड़ने के जूते",
+    "p5": 0.2,
+    "ndcg10": 0.085143117641621,
+    "constraint_ok": 6,
+    "constraint_n": 10,
+    "seconds": 6.497249126434326,
+    "top": [
+     {
+      "title": "WANDER Women's Athletic Running Socks 3-6 Pairs Thick Cushion Ankle Socks for Women Sport ",
+      "category": "underwear_socks",
+      "price": null,
+      "gender": "women",
+      "grade": 0
+     },
+     {
+      "title": "Ace Women's Running Socks, Small/Medium",
+      "category": "underwear_socks",
+      "price": null,
+      "gender": "women",
+      "grade": 0
+     },
+     {
+      "title": "Pembrook Womens Athletic Socks - 6 Pairs Low Cut Socks Women | Cute Ankle socks for Women ",
+      "category": "underwear_socks",
+      "price": null,
+      "gender": "women",
+      "grade": 0
+     },
+     {
+      "title": "RUNNING GIRL Ombre Yoga Leggings Seamless Power Stretch High Waisted Yoga Pants for Women ",
+      "category": "activewear",
+      "price": null,
+      "gender": "kids",
+      "grade": 0
+     },
+     {
+      "title": "Flat Foot Orthotics Women Insoles for Running Shoe Inserts Arch Support Insoles Pronation ",
+      "category": "footwear",
+      "price": null,
+      "gender": "unisex",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "running_ta",
+    "lang": "ta",
+    "group": "running",
+    "q": "பெண்கள் ஓடுவதற்கான காலணிகள்",
+    "p5": 0.0,
+    "ndcg10": 0.0,
+    "constraint_ok": 3,
+    "constraint_n": 10,
+    "seconds": 10.825380802154541,
+    "top": [
+     {
+      "title": "RUNNING GIRL Ombre Yoga Leggings Seamless Power Stretch High Waisted Yoga Pants for Women ",
+      "category": "activewear",
+      "price": null,
+      "gender": "kids",
+      "grade": 0
+     },
+     {
+      "title": "BALEAF Women's 7/8 Running Leggings High Waisted Workout Yoga Hiking Leggings with Zipper ",
+      "category": "bottoms",
+      "price": 32.99,
+      "gender": "women",
+      "grade": 0
+     },
+     {
+      "title": "RUNNING GIRL Ombre Yoga Pants Ultrasoft Performance Active Stretch High Waisted Running Le",
+      "category": "activewear",
+      "price": null,
+      "gender": "kids",
+      "grade": 0
+     },
+     {
+      "title": "RUNNING GIRL Ombre Yoga Leggings Compatible for Nike Seamless Power Stretch High Waisted Y",
+      "category": "activewear",
+      "price": null,
+      "gender": "kids",
+      "grade": 0
+     },
+     {
+      "title": "RUNNING GIRL Ombre Yoga Leggings Compatible for Nike Seamless Power Stretch High Waisted Y",
+      "category": "activewear",
+      "price": null,
+      "gender": "kids",
+      "grade": 0
+     }
+    ]
+   },
+   {
+    "id": "wedding_en",
+    "lang": "en",
+    "group": "wedding",
+    "q": "men's wedding outfit",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 10,
+    "constraint_n": 10,
+    "seconds": 9.746428728103638,
+    "top": [
+     {
+      "title": "INBLUE Men's Rhodium Plated Cufflinks Silver Tone Anchor Shirt Wedding",
+      "category": "accessories",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "HDE Men's Pre-Tied Adjustable Bow Tie Poly Satin Wedding Tuxedo Formal Event Necktie",
+      "category": "accessories",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "HDE Men's Wedding Party 5-Pack of Solid Color Formal Adjustable Pre-Tied Tuxedo Bow Ties R",
+      "category": "accessories",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "INBLUE Men's Rhodium Plated Cufflinks Silver Tone Blue World Map Shirt Wedding",
+      "category": "accessories",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "INBLUE Men's 2 PCS Rhodium Plated Enamel Cufflinks Silver Tone Purple Striped Shirt Weddin",
+      "category": "accessories",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "wedding_hi",
+    "lang": "hi",
+    "group": "wedding",
+    "q": "शादी के लिए पुरुषों का आउटफिट",
+    "p5": 0.8,
+    "ndcg10": 0.8899541168509599,
+    "constraint_ok": 9,
+    "constraint_n": 9,
+    "seconds": 9.742815971374512,
+    "top": [
+     {
+      "title": "Kajeer 6PCS Men's Bow Tie for Wedding Party - Solid Color Adjustable Pre Tied Bowties",
+      "category": "accessories",
+      "price": 8.99,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "INBLUE Men's Rhodium Plated Cufflinks Silver Tone Anchor Shirt Wedding",
+      "category": "accessories",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "OFFSTREAM Men's Party Costume - 2 Piece Casual Suit Outfit - Perfect for Parties, Hallowee",
+      "category": "costumes",
+      "price": 49.99,
+      "gender": "men",
+      "grade": 0
+     },
+     {
+      "title": "HDE Men's Wedding Party 5-Pack of Solid Color Formal Adjustable Pre-Tied Tuxedo Bow Ties R",
+      "category": "accessories",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "HDE Men's Pre-Tied Adjustable Bow Tie Poly Satin Wedding Tuxedo Formal Event Necktie",
+      "category": "accessories",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "swim_en",
+    "lang": "en",
+    "group": "swimsuit",
+    "q": "women's swimsuit",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 10,
+    "constraint_n": 10,
+    "seconds": 9.17971396446228,
+    "top": [
+     {
+      "title": "Womens One Piece Swimwear Swimsuits athletic Swimwear Swimsuit One Piece For women Blue Ch",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Women’s Swimsuit Cover up,Silky T Shirt Button Midi Dress Kimono,Summer Bathing Suit Beach",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "LAPAYA Women's Bathing Suit Front Criss Cross Ruched Backless One Piece Swimsuit, Black, T",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Avidqueen Women's Sexy Lace Crochet Swimsuit Bikini Cover Up Beach Dress (White)",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Womens Swimsuits 2 Piece Bathing Suits High Waisted Bikinis Printing Set for Women Black T",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "swim_ta",
+    "lang": "ta",
+    "group": "swimsuit",
+    "q": "பெண்களுக்கான நீச்சல் உடை",
+    "p5": 1.0,
+    "ndcg10": 0.92663607790064,
+    "constraint_ok": 10,
+    "constraint_n": 10,
+    "seconds": 8.21569299697876,
+    "top": [
+     {
+      "title": "Beach Belle Swimsuits for All Women's Cerise Lingerie Swimdress 16 Multi",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "2 Piece Swimsuits for Women Halter Ruched Swimdress Bathing Suits M, Color: Navy Blue",
+      "category": "swimwear",
+      "price": 9.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Womens One Piece Swimwear Swimsuits athletic Swimwear Swimsuit One Piece For women Blue Ch",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Oryer Womens Chiffon Swimsuit Bathing Suit Beach Bikini Swimwear Cover Up Dress",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Womens Two Piece Bathing Suits Swimsuit,Fashion Ruched Swimming Dress, Large, Navy(two Pie",
+      "category": "swimwear",
+      "price": 10.99,
+      "gender": "women",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "wallet",
+    "lang": "en",
+    "group": null,
+    "q": "men's leather wallet",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 10,
+    "constraint_n": 10,
+    "seconds": 8.923781156539917,
+    "top": [
+     {
+      "title": "Large Men's Brown Metal Zip-around Genuine Leather Wallet",
+      "category": "bags",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "WOLVERINE Men's Front Pocket Wallet",
+      "category": "bags",
+      "price": 36.48,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Michael Kors Mens Leather Passcase Wallet (Black)",
+      "category": "bags",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "LUUFAN Men's Genuine Leather Long Wallet Chain Wallet Card holder Wallet with Coin Pocket",
+      "category": "bags",
+      "price": 25.59,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "OB OURBAG Men's RFID BLOCKING Vintage Genuine Leather Bifold Wallet Checkbook, Dragon, Bro",
+      "category": "bags",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "earrings",
+    "lang": "en",
+    "group": null,
+    "q": "women's sterling silver earrings",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 10.520184755325317,
+    "top": [
+     {
+      "title": "INSPIRED BY YOU. Women's Earrings - 925 Sterling Silver Emerald Cut Ombre Crystal Stud Ear",
+      "category": "jewelry",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Sterling Silver Genuine and Synthetic Gemstone Birthstone Dainty Oval Halo Leverback Dangl",
+      "category": "jewelry",
+      "price": 42.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Women’s 925 Oxidized Sterling Silver Oval Gemstone Vintage Dangle Hook Earrings, 1.25\", Am",
+      "category": "jewelry",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "S925 Sterling Silver Filigree Dangle Leaf Earrings for Women",
+      "category": "jewelry",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Women’s 925 Sterling Silver Butterfly Wing Dangle Hook Earrings, 0.78” x 1.29”",
+      "category": "jewelry",
+      "price": 9.48,
+      "gender": "women",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "work_shoes",
+    "lang": "en",
+    "group": null,
+    "q": "comfortable shoes for standing all day at work",
+    "p5": 0.6,
+    "ndcg10": 0.6698623505528798,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 10.083452701568604,
+    "top": [
+     {
+      "title": "SB SOX Lite Compression Socks (15-20mmHg) for Men & Women – Best Socks for All Day Wear!",
+      "category": "underwear_socks",
+      "price": 10.95,
+      "gender": "unisex",
+      "grade": 0
+     },
+     {
+      "title": "Penishoe Womens Arch Support Flip Flops Comfortable Walking Thong Sandals Beach Summer Sho",
+      "category": "footwear",
+      "price": 32.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Spira Men's Classic Walker 2",
+      "category": null,
+      "price": 139.95,
+      "gender": "men",
+      "grade": 0
+     },
+     {
+      "title": "Work Boots Men MOC TOE, Soft Toe 6” Full Grain Leather Breathable Water Resistant, Non Sli",
+      "category": "footwear",
+      "price": 99.99,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Dr. Comfort Men's Boss Diabetic Boots",
+      "category": "footwear",
+      "price": 121.8,
+      "gender": "men",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "yoga_cheap",
+    "lang": "en",
+    "group": null,
+    "q": "yoga pants for women under $30",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 17,
+    "constraint_n": 17,
+    "seconds": 12.719621896743774,
+    "top": [
+     {
+      "title": "MOSHENGQI Women's Ruched Butt Lifting High Waist Yoga Pants Tummy Control Stretchy Workout",
+      "category": "activewear",
+      "price": 16.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Dutte Dutta Women's Yoga Pants High Waist Tummy Control Workout Leggings",
+      "category": "activewear",
+      "price": 15.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "GoodLock Clearance!! Women Sport Print Yoga Pants Workout Mid Waist Running Pants Fitness ",
+      "category": "activewear",
+      "price": 3.89,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "LEINIDINA Capri Leggings Bootcut Yoga Pants for Women Flared Leggings High Waisted Pocket ",
+      "category": "bottoms",
+      "price": 23.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Novelty Workout Leggings High Waisted Yoga Pants for Women 4-Way Stretch Exercise Running ",
+      "category": "bottoms",
+      "price": 28.88,
+      "gender": "women",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "rain_boots_kids",
+    "lang": "en",
+    "group": null,
+    "q": "kids rain boots",
+    "p5": 0.4,
+    "ndcg10": 0.39327839964630634,
+    "constraint_ok": 6,
+    "constraint_n": 10,
+    "seconds": 11.39503788948059,
+    "top": [
+     {
+      "title": "Toddler & Little Girls Youth Pink Polka Dot Rain Snow Boots w/Great Lining, Comfortable (1",
+      "category": "footwear",
+      "price": null,
+      "gender": "kids",
+      "grade": 2
+     },
+     {
+      "title": "Kids Raincoat, Rainbrace Children Carton Waterproof Hooded Rain Poncho Age 6-12,Pink Angel",
+      "category": "outerwear",
+      "price": null,
+      "gender": "kids",
+      "grade": 0
+     },
+     {
+      "title": "Kids Raincoat, Rainbrace Girls Boys Carton Waterproof Hooded Rain Coat Jacket (Age for 2-4",
+      "category": "outerwear",
+      "price": null,
+      "gender": "kids",
+      "grade": 0
+     },
+     {
+      "title": "QGAKAGO(TM Baby Multicolor Rainbow Cotton Knit Premium Soft Sole Anti-Slip Warm Winter Inf",
+      "category": "footwear",
+      "price": null,
+      "gender": "kids",
+      "grade": 2
+     },
+     {
+      "title": "Frogg Toggs Polly Woggs Kids Rain Suit",
+      "category": "outerwear",
+      "price": null,
+      "gender": "unisex",
+      "grade": 0
+     }
+    ]
+   },
+   {
+    "id": "cap",
+    "lang": "en",
+    "group": null,
+    "q": "baseball cap for men",
+    "p5": 1.0,
+    "ndcg10": 0.9305687780632227,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 9.939286947250366,
+    "top": [
+     {
+      "title": "Good Vibes Only Embroidered Dad Hat 100% Cotton Baseball Cap For Men And Women, Black, OS",
+      "category": "headwear",
+      "price": null,
+      "gender": "unisex",
+      "grade": 2
+     },
+     {
+      "title": "Battle Royale Game Unisex Baseball Cap Peaked Hat Adjustable Men's Novelty Baseball Caps B",
+      "category": "headwear",
+      "price": null,
+      "gender": "kids",
+      "grade": 2
+     },
+     {
+      "title": "Old Bay Distressed Logo Men's Baseball Cap Hat (one Size, Adjustable)",
+      "category": "headwear",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Baseball Caps, Boomboom Women Men Unisex Mesh Snapback Hip Hop Flat Hats Baseball Caps",
+      "category": "headwear",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Lsinyan New Hot Deep Blue Fashion Baseball Snapback Hats and Caps for Men Cool Cotton Adju",
+      "category": "headwear",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "sunglasses",
+    "lang": "en",
+    "group": null,
+    "q": "polarized sunglasses for driving",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 7.807738780975342,
+    "top": [
+     {
+      "title": "Night Driving Glasses for Men Women - SOXICK Polarized Driving Glasses Anti Glare Adjustab",
+      "category": "eyewear",
+      "price": null,
+      "gender": "unisex",
+      "grade": 2
+     },
+     {
+      "title": "Premium Aviator Polarized Sunglasses Men Women Metal Frame Sun Mirror Glasses for Driving",
+      "category": "eyewear",
+      "price": 13.98,
+      "gender": "unisex",
+      "grade": 2
+     },
+     {
+      "title": "KKP Colorful Polarized Sunglasses outdoor style Classic Aviator Sunglasses for Men Women D",
+      "category": "eyewear",
+      "price": null,
+      "gender": "unisex",
+      "grade": 2
+     },
+     {
+      "title": "Br'Guras Safety Sunglasses for Men with 400 UV Protection Polarized Lens, Mens Sunglasses ",
+      "category": "eyewear",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "AoHeng Polarized Clip on Sunglasses,Night Driving Vision Clip on Glasses,Unisex,1.00mm Thi",
+      "category": "eyewear",
+      "price": 15.98,
+      "gender": "women",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "cocktail",
+    "lang": "en",
+    "group": null,
+    "q": "black cocktail dress for a party",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 9.925930976867676,
+    "top": [
+     {
+      "title": "Kearia Women Short Sleeve Deep V-Neck Sequin Split Bodycon Cocktail Party Dress Black XLar",
+      "category": "dresses",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Simple Retro Cocktail Party Dress, Women's 1950s Mock Neck Cap Sleeve Lace Vintage Cocktai",
+      "category": "dresses",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Belle Poque Audrey Hepburn 50s Vintage Black Cocktail Party Dress BP091(S)",
+      "category": "dresses",
+      "price": null,
+      "gender": null,
+      "grade": 2
+     },
+     {
+      "title": "VETIOR Womens Summer Dress Floral Vintage Cocktail Party Dress(Black,M)",
+      "category": "dresses",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "VETIOR Womens Sundress Floral Vintage Cocktail Party Dress(Black,L)",
+      "category": "dresses",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "socks",
+    "lang": "en",
+    "group": null,
+    "q": "cotton socks multipack",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 10.432782888412476,
+    "top": [
+     {
+      "title": "Bienvenu lady's 4 Pack Pattern Warm Cotton Crew Socks,Multicolor 3",
+      "category": "underwear_socks",
+      "price": null,
+      "gender": null,
+      "grade": 2
+     },
+     {
+      "title": "Pack of 5 Womens Cute Animals Socks Girls Warm Novelty Funny Cartoon Cotton Crew Socks,Mul",
+      "category": "underwear_socks",
+      "price": null,
+      "gender": "kids",
+      "grade": 2
+     },
+     {
+      "title": "YUEDGE Women's 3Pack Multi Performance Outdoor Hiking Trekking Cushion Crew Socks, L(Women",
+      "category": "underwear_socks",
+      "price": null,
+      "gender": "unisex",
+      "grade": 2
+     },
+     {
+      "title": "5-pack Men's Ultra thin Breathable Cotton Dress Socks, 5-pack,Black,Medium",
+      "category": "underwear_socks",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Pack of 6 Mens Dress Socks,Cotton Socks,Crew Socks,Classic Comfortable Soft Socks For Men ",
+      "category": "underwear_socks",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "watch",
+    "lang": "en",
+    "group": null,
+    "q": "men's watch with leather strap",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 10,
+    "constraint_n": 10,
+    "seconds": 10.321723937988281,
+    "top": [
+     {
+      "title": "Nixon Men's Quartz Watch The Ride Brown / Black A315562-00 with Leather Strap",
+      "category": "watches",
+      "price": 299.99,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Etbotu Quartz Watch with Leather Watch Strap, Business Casual Style for Men",
+      "category": "watches",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Men's Watches Luxury Casual Dress Chronograph Calendar Waterproof Military Quartz Wristwat",
+      "category": "watches",
+      "price": 19.0,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Voeons Men's Watches Black Leather Strap Quartz Casual Watch",
+      "category": "watches",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Tamlee Red Sandalwood Men's Wooden Watch with Soft Genuine Leather Strap Wood Wristwatch",
+      "category": "watches",
+      "price": null,
+      "gender": "unisex",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "gym_tee",
+    "lang": "en",
+    "group": null,
+    "q": "gym t-shirt for men under $25",
+    "p5": 1.0,
+    "ndcg10": 0.8643145546088337,
+    "constraint_ok": 18,
+    "constraint_n": 20,
+    "seconds": 9.542142868041992,
+    "top": [
+     {
+      "title": "Monsta Clothing Co. Men's MMA Fight (TapOrBleed-000) Fitness Gym T-Shirt",
+      "category": "tops",
+      "price": 21.97,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "MAXERIA Mens Workout Shirts Dry Fit T Shirts for Men Reflective Workout Tops Mens Gym Shir",
+      "category": "tops",
+      "price": 17.99,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "ZUEVI Muscle Tank Tops for Men Cut Open Sides Bodybuilding Vest Gym Workout Stringer T-Shi",
+      "category": "tops",
+      "price": 24.5,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "COOFANDY Men's 3 Pack Workout Tank Tops Quick Dry Gym Bodybuilding Training Fitness Sleeve",
+      "category": "tops",
+      "price": 16.99,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Mens Active T-Shirt - Quick-Dry Athletic Workout Training Stretch Crew Neck Short Sleeve T",
+      "category": "tops",
+      "price": 23.09,
+      "gender": "men",
+      "grade": 2
+     }
+    ]
+   },
+   {
+    "id": "gloves",
+    "lang": "en",
+    "group": null,
+    "q": "winter gloves for cold weather",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 8.835807085037231,
+    "top": [
+     {
+      "title": "OZERO Waterproof Winter Gloves Men Women -30 ℉ Cold Proof Touchscreen Anti Slip Silicon Pa",
+      "category": "accessories",
+      "price": 29.96,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Men Waterproof Warmest Winter Gloves - Acokac Touchscreen Snow Snowboard Ski Gloves, 3M-Th",
+      "category": "accessories",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Dealzip Inc Fashion Grey & Black Mens Winter WindStopper Waterproof Outdoor Sports Snow Sk",
+      "category": "accessories",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "2ND DATE Women's Winter Magic Gloves - Pack of 12",
+      "category": "accessories",
+      "price": 20.95,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "OZERO Warm Gloves Coldproof Winter Insulated Glove with Deerskin Suede Leather Palm & Ther",
+      "category": "accessories",
+      "price": null,
+      "gender": "unisex",
+      "grade": 2
+     }
+    ]
+   }
+  ],
+  "D": [
+   {
+    "id": "formal_outfit",
+    "lang": "en",
+    "group": null,
+    "q": "formal business outfit",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 13.567101955413818,
+    "top": [
+     {
+      "title": "Women's Elegant Business Two Piece Office Lady Suit Set Work Blazer Pant (Suit Set-Light G",
+      "category": "suits_formalwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "SLIM-SATION Women's Wide Band Ankle Pant Pull-on Pant with Tummy Control",
+      "category": "bottoms",
+      "price": 69.0,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Shoes for Crews Men's Cambridge Sneaker",
+      "category": "footwear",
+      "price": 66.48,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Allegra K Women's Long Sleeve White Office Shirt Button Down Work Ruched Front Tops White ",
+      "category": "tops",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Women's Linen Formal Pants",
+      "category": "bottoms",
+      "price": 35.99,
+      "gender": "women",
+      "grade": 2
+     }
+    ],
+    "parse_source": "cache",
+    "parse_model": null,
+    "timings": {
+     "parse_ms": 51,
+     "embed_ms": 102,
+     "search_ms": 148,
+     "rerank_ms": 13263,
+     "total_ms": 13567
+    },
+    "english": "formal business outfit",
+    "slots": [
+     "formal business dress shirt",
+     "formal business trousers",
+     "formal business leather shoes"
+    ]
+   },
+   {
+    "id": "jacket_en",
+    "lang": "en",
+    "group": "winter_jacket",
+    "q": "warm winter jacket",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 11.809469938278198,
+    "top": [
+     {
+      "title": "Keevoom Men's Waterproof Ski Jacket Winter Warm Snow Coat Windproof Mountain Raincoat Snow",
+      "category": "outerwear",
+      "price": 37.99,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Uoiuxc Women's Hooded Winter Coat Warm Fleeced Lined Parka Long Jackets",
+      "category": "outerwear",
+      "price": 79.98,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "MAGCOMSEN Men's Winter Coats Water Resistant Snow Ski Jacket Fleece Lined Parka 4 Pockets",
+      "category": "outerwear",
+      "price": 61.98,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "CAMEL CROWN Women's Waterproof Ski Jacket Winter Coat Windbreaker Fleece Inner Detachable ",
+      "category": "outerwear",
+      "price": 86.9,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Plus Size Warm Coats Jacket for Women,Warm Winter Cute Button Down Hooded Tops Teddy Coat ",
+      "category": "outerwear",
+      "price": 9.98,
+      "gender": "women",
+      "grade": 2
+     }
+    ],
+    "parse_source": "llm",
+    "parse_model": "nvidia/nemotron-3-super-120b-a12b:free",
+    "timings": {
+     "parse_ms": 2156,
+     "embed_ms": 185,
+     "search_ms": 34,
+     "rerank_ms": 9434,
+     "total_ms": 11809
+    },
+    "english": "warm winter jacket",
+    "slots": [
+     "warm winter jacket"
+    ]
+   },
+   {
+    "id": "jacket_hi",
+    "lang": "hi",
+    "group": "winter_jacket",
+    "q": "सर्दियों के लिए गर्म जैकेट",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 9.465013027191162,
+    "top": [
+     {
+      "title": "Keevoom Men's Waterproof Ski Jacket Winter Warm Snow Coat Windproof Mountain Raincoat Snow",
+      "category": "outerwear",
+      "price": 37.99,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Uoiuxc Women's Hooded Winter Coat Warm Fleeced Lined Parka Long Jackets",
+      "category": "outerwear",
+      "price": 79.98,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "MAGCOMSEN Men's Winter Coats Water Resistant Snow Ski Jacket Fleece Lined Parka 4 Pockets",
+      "category": "outerwear",
+      "price": 61.98,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "CAMEL CROWN Women's Waterproof Ski Jacket Winter Coat Windbreaker Fleece Inner Detachable ",
+      "category": "outerwear",
+      "price": 86.9,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Plus Size Warm Coats Jacket for Women,Warm Winter Cute Button Down Hooded Tops Teddy Coat ",
+      "category": "outerwear",
+      "price": 9.98,
+      "gender": "women",
+      "grade": 2
+     }
+    ],
+    "parse_source": "cache",
+    "parse_model": null,
+    "timings": {
+     "parse_ms": 2,
+     "embed_ms": 101,
+     "search_ms": 25,
+     "rerank_ms": 9337,
+     "total_ms": 9465
+    },
+    "english": "warm jacket for winter",
+    "slots": [
+     "warm winter jacket"
+    ]
+   },
+   {
+    "id": "jacket_ta",
+    "lang": "ta",
+    "group": "winter_jacket",
+    "q": "குளிர்காலத்திற்கு சூடான ஜாக்கெட்",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 11.347185850143433,
+    "top": [
+     {
+      "title": "Keevoom Men's Waterproof Ski Jacket Winter Warm Snow Coat Windproof Mountain Raincoat Snow",
+      "category": "outerwear",
+      "price": 37.99,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Uoiuxc Women's Hooded Winter Coat Warm Fleeced Lined Parka Long Jackets",
+      "category": "outerwear",
+      "price": 79.98,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "MAGCOMSEN Men's Winter Coats Water Resistant Snow Ski Jacket Fleece Lined Parka 4 Pockets",
+      "category": "outerwear",
+      "price": 61.98,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "MAGCOMSEN Women's Winter Coats Water Resistant Ski Snow Jacket Warm Fleece Jacket Parka Ra",
+      "category": "outerwear",
+      "price": 59.98,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Plus Size Warm Coats Jacket for Women,Warm Winter Cute Button Down Hooded Tops Teddy Coat ",
+      "category": "outerwear",
+      "price": 9.98,
+      "gender": "women",
+      "grade": 2
+     }
+    ],
+    "parse_source": "llm",
+    "parse_model": "nvidia/nemotron-3-super-120b-a12b:free",
+    "timings": {
+     "parse_ms": 1934,
+     "embed_ms": 328,
+     "search_ms": 26,
+     "rerank_ms": 9059,
+     "total_ms": 11347
+    },
+    "english": "warm jacket for winter",
+    "slots": [
+     "warm jacket for winter"
+    ]
+   },
+   {
+    "id": "beach_en",
+    "lang": "en",
+    "group": "beach",
+    "q": "outfit for the beach this summer",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 14.967073917388916,
+    "top": [
+     {
+      "title": "2017 Women's Spring Summer Floral Print Striped Short Sleeve T Shirts Loose Casual Tops,Gr",
+      "category": "tops",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "atika Women's Casual Harem Shorts, Premium Ultra Buttery Soft Shorts, Elastic High Waisted",
+      "category": "bottoms",
+      "price": 11.98,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "JEWSUN Barefoot Sandals with Rhinestones and Beads. Beach Wedding Barefoot Sandals, Beaded",
+      "category": "footwear",
+      "price": null,
+      "gender": "unisex",
+      "grade": 2
+     },
+     {
+      "title": "Palm Wave Men's Hawaiian Shirt Aloha Shirt XL White with Navy Floral",
+      "category": "tops",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Floerns Women's Flower Print Hot Summer Casual Beach Pockets Shorts Black M",
+      "category": "bottoms",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     }
+    ],
+    "parse_source": "cache",
+    "parse_model": null,
+    "timings": {
+     "parse_ms": 2,
+     "embed_ms": 123,
+     "search_ms": 66,
+     "rerank_ms": 14775,
+     "total_ms": 14967
+    },
+    "english": "outfit for the beach this summer",
+    "slots": [
+     "casual beach t-shirt",
+     "beach shorts",
+     "beach sandals"
+    ]
+   },
+   {
+    "id": "beach_ta",
+    "lang": "ta",
+    "group": "beach",
+    "q": "கோடை கடற்கரைக்கு ஏற்ற ஆடை",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 12.811461925506592,
+    "top": [
+     {
+      "title": "2017 Women's Spring Summer Floral Print Striped Short Sleeve T Shirts Loose Casual Tops,Gr",
+      "category": "tops",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "atika Women's Casual Harem Shorts, Premium Ultra Buttery Soft Shorts, Elastic High Waisted",
+      "category": "bottoms",
+      "price": 11.98,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "KIDDAD Saltwater Heals Everything Shirt Women Hawaiian Palm Trees Graphic T-Shirt Summer V",
+      "category": "tops",
+      "price": 18.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Floerns Women's Flower Print Hot Summer Casual Beach Pockets Shorts Black M",
+      "category": "bottoms",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Carve Designs Women's Dylan Gauze Shirt",
+      "category": "tops",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     }
+    ],
+    "parse_source": "cache",
+    "parse_model": null,
+    "timings": {
+     "parse_ms": 5,
+     "embed_ms": 618,
+     "search_ms": 43,
+     "rerank_ms": 12146,
+     "total_ms": 12811
+    },
+    "english": "outfit suitable for summer beach",
+    "slots": [
+     "lightweight summer t-shirt for beach",
+     "summer shorts for beach"
+    ]
+   },
+   {
+    "id": "beach_hi",
+    "lang": "hi",
+    "group": "beach",
+    "q": "गर्मियों में समुद्र तट के लिए कपड़े",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 19.412647008895874,
+    "top": [
+     {
+      "title": "KIDDAD Saltwater Heals Everything Shirt Women Hawaiian Palm Trees Graphic T-Shirt Summer V",
+      "category": "tops",
+      "price": 18.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "atika Women's Casual Harem Shorts, Premium Ultra Buttery Soft Shorts, Elastic High Waisted",
+      "category": "bottoms",
+      "price": 11.98,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "2017 Women's Spring Summer Floral Print Striped Short Sleeve T Shirts Loose Casual Tops,Gr",
+      "category": "tops",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Floerns Women's Flower Print Hot Summer Casual Beach Pockets Shorts Black M",
+      "category": "bottoms",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Palm Wave Men's Hawaiian Shirt Aloha Shirt XL White with Navy Floral",
+      "category": "tops",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     }
+    ],
+    "parse_source": "llm",
+    "parse_model": "nvidia/nemotron-3-super-120b-a12b:free",
+    "timings": {
+     "parse_ms": 6064,
+     "embed_ms": 467,
+     "search_ms": 35,
+     "rerank_ms": 12847,
+     "total_ms": 19412
+    },
+    "english": "clothes for beach in summer",
+    "slots": [
+     "lightweight summer beach t-shirt",
+     "summer beach shorts"
+    ]
+   },
+   {
+    "id": "running_en",
+    "lang": "en",
+    "group": "running",
+    "q": "running shoes for women",
+    "p5": 1.0,
+    "ndcg10": 0.6964504938282109,
+    "constraint_ok": 10,
+    "constraint_n": 10,
+    "seconds": 10.357661724090576,
+    "top": [
+     {
+      "title": "PUMA Women's Muse Sneaker",
+      "category": "footwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Hemlock Women High Heels Boots Plus Snow Calf Boots Wedge Heel Ankle Shoes Height Increase",
+      "category": "footwear",
+      "price": 39.66,
+      "gender": "women",
+      "grade": 1
+     },
+     {
+      "title": "Nike Women's Basketball Shoes",
+      "category": "footwear",
+      "price": null,
+      "gender": "women",
+      "grade": 1
+     },
+     {
+      "title": "Gravity Defyer Proven Pain Relief Women's G-Defy Ion Athletic Shoes for Knee Pain",
+      "category": "footwear",
+      "price": 99.95,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Flat Foot Orthotics Women Insoles for Running Shoe Inserts Arch Support Insoles Pronation ",
+      "category": "footwear",
+      "price": null,
+      "gender": "unisex",
+      "grade": 2
+     }
+    ],
+    "parse_source": "llm",
+    "parse_model": "nvidia/nemotron-3-super-120b-a12b:free",
+    "timings": {
+     "parse_ms": 1706,
+     "embed_ms": 654,
+     "search_ms": 22,
+     "rerank_ms": 7975,
+     "total_ms": 10358
+    },
+    "english": "running shoes for women",
+    "slots": [
+     "women's running shoes"
+    ]
+   },
+   {
+    "id": "running_hi",
+    "lang": "hi",
+    "group": "running",
+    "q": "महिलाओं के लिए दौड़ने के जूते",
+    "p5": 1.0,
+    "ndcg10": 0.7266993901023103,
+    "constraint_ok": 10,
+    "constraint_n": 10,
+    "seconds": 10.707217931747437,
+    "top": [
+     {
+      "title": "PUMA Women's Muse Sneaker",
+      "category": "footwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Hemlock Women High Heels Boots Plus Snow Calf Boots Wedge Heel Ankle Shoes Height Increase",
+      "category": "footwear",
+      "price": 39.66,
+      "gender": "women",
+      "grade": 1
+     },
+     {
+      "title": "Nike Women's Basketball Shoes",
+      "category": "footwear",
+      "price": null,
+      "gender": "women",
+      "grade": 1
+     },
+     {
+      "title": "Native Shoes, Women's Audrey, Adult Shoe",
+      "category": "footwear",
+      "price": 32.5,
+      "gender": "women",
+      "grade": 1
+     },
+     {
+      "title": "Gravity Defyer Proven Pain Relief Women's G-Defy Ion Athletic Shoes for Knee Pain",
+      "category": "footwear",
+      "price": 99.95,
+      "gender": "women",
+      "grade": 2
+     }
+    ],
+    "parse_source": "llm",
+    "parse_model": "nvidia/nemotron-3-super-120b-a12b:free",
+    "timings": {
+     "parse_ms": 1834,
+     "embed_ms": 215,
+     "search_ms": 17,
+     "rerank_ms": 8640,
+     "total_ms": 10707
+    },
+    "english": "running shoes for women",
+    "slots": [
+     "women's running shoes"
+    ]
+   },
+   {
+    "id": "running_ta",
+    "lang": "ta",
+    "group": "running",
+    "q": "பெண்கள் ஓடுவதற்கான காலணிகள்",
+    "p5": 1.0,
+    "ndcg10": 0.7032659417616602,
+    "constraint_ok": 10,
+    "constraint_n": 10,
+    "seconds": 12.387503862380981,
+    "top": [
+     {
+      "title": "PUMA Women's Muse Sneaker",
+      "category": "footwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Nike Women's Basketball Shoes",
+      "category": "footwear",
+      "price": null,
+      "gender": "women",
+      "grade": 1
+     },
+     {
+      "title": "Gravity Defyer Proven Pain Relief Women's G-Defy Ion Athletic Shoes for Knee Pain",
+      "category": "footwear",
+      "price": 99.95,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Hemlock Women High Heels Boots Plus Snow Calf Boots Wedge Heel Ankle Shoes Height Increase",
+      "category": "footwear",
+      "price": 39.66,
+      "gender": "women",
+      "grade": 1
+     },
+     {
+      "title": "Snapsmile Shoes Insoles for Men and Women - Scientifically Proven Design High Arch Support",
+      "category": "footwear",
+      "price": null,
+      "gender": "unisex",
+      "grade": 2
+     }
+    ],
+    "parse_source": "llm",
+    "parse_model": "nvidia/nemotron-3-super-120b-a12b:free",
+    "timings": {
+     "parse_ms": 1932,
+     "embed_ms": 517,
+     "search_ms": 17,
+     "rerank_ms": 9922,
+     "total_ms": 12387
+    },
+    "english": "women's running shoes",
+    "slots": [
+     "women's running shoes"
+    ]
+   },
+   {
+    "id": "wedding_en",
+    "lang": "en",
+    "group": "wedding",
+    "q": "men's wedding outfit",
+    "p5": 1.0,
+    "ndcg10": 0.8043754776986981,
+    "constraint_ok": 10,
+    "constraint_n": 10,
+    "seconds": 21.89063787460327,
+    "top": [
+     {
+      "title": "Men Classic Black 2 Pcs Cuff links and 4pcs Cuff Studs for Fashion Luxurious Tuxedo Formal",
+      "category": "suits_formalwear",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Helikon Men's SFU Next Trousers Coyote Ripstop",
+      "category": "bottoms",
+      "price": 54.9,
+      "gender": "men",
+      "grade": 1
+     },
+     {
+      "title": "Shoes for Crews Men's Cambridge Sneaker",
+      "category": "footwear",
+      "price": 66.48,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "MENDENG Black Gold Striped Tie Woven Jacquard Silk Men's Suits Ties Necktie",
+      "category": "suits_formalwear",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Mens Boho Hippe Baggy Cotton Handmade Wide Leg Harem Pants - Drop Pockets Style Brown",
+      "category": "bottoms",
+      "price": null,
+      "gender": "men",
+      "grade": 1
+     }
+    ],
+    "parse_source": "llm",
+    "parse_model": "nvidia/nemotron-3-super-120b-a12b:free",
+    "timings": {
+     "parse_ms": 5603,
+     "embed_ms": 422,
+     "search_ms": 55,
+     "rerank_ms": 15808,
+     "total_ms": 21889
+    },
+    "english": "men's wedding outfit",
+    "slots": [
+     "men's formal dress shirt for a wedding",
+     "men's formal dress pants",
+     "men's leather dress shoes"
+    ]
+   },
+   {
+    "id": "wedding_hi",
+    "lang": "hi",
+    "group": "wedding",
+    "q": "शादी के लिए पुरुषों का आउटफिट",
+    "p5": 1.0,
+    "ndcg10": 0.8043754776986981,
+    "constraint_ok": 10,
+    "constraint_n": 10,
+    "seconds": 21.57283878326416,
+    "top": [
+     {
+      "title": "Men Classic Black 2 Pcs Cuff links and 4pcs Cuff Studs for Fashion Luxurious Tuxedo Formal",
+      "category": "suits_formalwear",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Helikon Men's SFU Next Trousers Coyote Ripstop",
+      "category": "bottoms",
+      "price": 54.9,
+      "gender": "men",
+      "grade": 1
+     },
+     {
+      "title": "Shoes for Crews Men's Cambridge Sneaker",
+      "category": "footwear",
+      "price": 66.48,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "MENDENG Black Gold Striped Tie Woven Jacquard Silk Men's Suits Ties Necktie",
+      "category": "suits_formalwear",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Mens Boho Hippe Baggy Cotton Handmade Wide Leg Harem Pants - Drop Pockets Style Brown",
+      "category": "bottoms",
+      "price": null,
+      "gender": "men",
+      "grade": 1
+     }
+    ],
+    "parse_source": "llm",
+    "parse_model": "nvidia/nemotron-3-super-120b-a12b:free",
+    "timings": {
+     "parse_ms": 7003,
+     "embed_ms": 585,
+     "search_ms": 53,
+     "rerank_ms": 13932,
+     "total_ms": 21573
+    },
+    "english": "outfit for a wedding for men",
+    "slots": [
+     "men's formal dress shirt for a wedding",
+     "men's formal dress pants",
+     "men's leather dress shoes"
+    ]
+   },
+   {
+    "id": "swim_en",
+    "lang": "en",
+    "group": "swimsuit",
+    "q": "women's swimsuit",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 10,
+    "constraint_n": 10,
+    "seconds": 8.661931037902832,
+    "top": [
+     {
+      "title": "Avidqueen Women's Sexy Lace Crochet Swimsuit Bikini Cover Up Beach Dress (White)",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Women Crochet Bikini Set Knit 2PCS Bathing Suit Swimsuit Beachwear",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "COCOSHIP Navy Blue 1950s Retro Vintage One Piece Monokini White Anchors Swimsuits Swimwear",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "COCOSHIP Red and White Polka dot Retro Vintage One Piece Swimwear Swimsuit 48(FBA)",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "LAPAYA Women's Bathing Suit Front Criss Cross Ruched Backless One Piece Swimsuit, Black, T",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     }
+    ],
+    "parse_source": "llm",
+    "parse_model": "nvidia/nemotron-3-super-120b-a12b:free",
+    "timings": {
+     "parse_ms": 4395,
+     "embed_ms": 218,
+     "search_ms": 21,
+     "rerank_ms": 4027,
+     "total_ms": 8662
+    },
+    "english": "women's swimsuit",
+    "slots": [
+     "women's swimsuit"
+    ]
+   },
+   {
+    "id": "swim_ta",
+    "lang": "ta",
+    "group": "swimsuit",
+    "q": "பெண்களுக்கான நீச்சல் உடை",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 10,
+    "constraint_n": 10,
+    "seconds": 6.1768622398376465,
+    "top": [
+     {
+      "title": "Avidqueen Women's Sexy Lace Crochet Swimsuit Bikini Cover Up Beach Dress (White)",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Women Crochet Bikini Set Knit 2PCS Bathing Suit Swimsuit Beachwear",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "COCOSHIP Navy Blue 1950s Retro Vintage One Piece Monokini White Anchors Swimsuits Swimwear",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "COCOSHIP Red and White Polka dot Retro Vintage One Piece Swimwear Swimsuit 48(FBA)",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "LAPAYA Women's Bathing Suit Front Criss Cross Ruched Backless One Piece Swimsuit, Black, T",
+      "category": "swimwear",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     }
+    ],
+    "parse_source": "llm",
+    "parse_model": "nvidia/nemotron-3-super-120b-a12b:free",
+    "timings": {
+     "parse_ms": 2065,
+     "embed_ms": 204,
+     "search_ms": 20,
+     "rerank_ms": 3888,
+     "total_ms": 6177
+    },
+    "english": "swimsuit for women",
+    "slots": [
+     "women's swimsuit"
+    ]
+   },
+   {
+    "id": "wallet",
+    "lang": "en",
+    "group": null,
+    "q": "men's leather wallet",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 10,
+    "constraint_n": 10,
+    "seconds": 10.036700010299683,
+    "top": [
+     {
+      "title": "Genuine Leather Belts For Men, 100% Full Grain Mens Belt For Casual Wear, With Antique All",
+      "category": "accessories",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Belt for Men -Trimmed to Fit- Top Class Genuine Leather Men's Belt (45-48, Brown)",
+      "category": "accessories",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Men's Leather Belt 39\"-70\" Waist Regular and Big & Tall Sizes,Black & Brown Colors (48\"-55",
+      "category": "accessories",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Men's Leather Belt 39\"-63\" Waist Regular and Big & Tall Sizes,Black & Brown Colors (52\"-55",
+      "category": "accessories",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Belt for Men -Trimmed to Fit- Genuine Leather Men's Belt in an Elegant Gift Box (39-44, Bl",
+      "category": "accessories",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     }
+    ],
+    "parse_source": "llm",
+    "parse_model": "nvidia/nemotron-3-super-120b-a12b:free",
+    "timings": {
+     "parse_ms": 1942,
+     "embed_ms": 196,
+     "search_ms": 27,
+     "rerank_ms": 7871,
+     "total_ms": 10037
+    },
+    "english": "men's leather wallet",
+    "slots": [
+     "men's leather wallet"
+    ]
+   },
+   {
+    "id": "earrings",
+    "lang": "en",
+    "group": null,
+    "q": "women's sterling silver earrings",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 13.573543071746826,
+    "top": [
+     {
+      "title": "INSPIRED BY YOU. Women's Earrings - 925 Sterling Silver Emerald Cut Ombre Crystal Stud Ear",
+      "category": "jewelry",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Women’s 925 Sterling Silver Butterfly Wing Dangle Hook Earrings, 0.78” x 1.29”",
+      "category": "jewelry",
+      "price": 9.48,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "MBLife 925 Sterling Silver Polish Finishing Diamond-Cut Huggie Hoop Earrings (0.6\")",
+      "category": "jewelry",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Sterling Silver Genuine and Synthetic Gemstone Birthstone Dainty Oval Halo Leverback Dangl",
+      "category": "jewelry",
+      "price": 42.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Fashion Initial Earrings Dangle for Women - 14K Gold Plated Sterling Silver Initial Earrin",
+      "category": "jewelry",
+      "price": 13.99,
+      "gender": "women",
+      "grade": 2
+     }
+    ],
+    "parse_source": "llm",
+    "parse_model": "nvidia/nemotron-3-super-120b-a12b:free",
+    "timings": {
+     "parse_ms": 4443,
+     "embed_ms": 242,
+     "search_ms": 27,
+     "rerank_ms": 8861,
+     "total_ms": 13573
+    },
+    "english": "women's sterling silver earrings",
+    "slots": [
+     "women's sterling silver earrings"
+    ]
+   },
+   {
+    "id": "work_shoes",
+    "lang": "en",
+    "group": null,
+    "q": "comfortable shoes for standing all day at work",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 10.99123501777649,
+    "top": [
+     {
+      "title": "OrthoComfoot Men's Loafers & Slip-ons,Plantar Fasciitis, Foot and Heel Pain Relief,Orthope",
+      "category": "footwear",
+      "price": 69.89,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "OrthoComfoot Men's Plantar Fasciitis Slip-Ons Sneakers, Arch Support Walking Loafers, Foot",
+      "category": "footwear",
+      "price": 79.99,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "MEGNYA Orthotic Sandals for Women, Plantar Fasciitis Sandals for Flat Feet, Orthopedic Wal",
+      "category": "footwear",
+      "price": 19.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "OrthoComfoot Men's Slip On Loafers,Arch Support Boat Shoes for Plantar Fasciitis,Canvas Le",
+      "category": "footwear",
+      "price": 69.89,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Allegra K Women's Stiletto Heel Pointed Toe Chelsea Booties",
+      "category": "footwear",
+      "price": 40.99,
+      "gender": "women",
+      "grade": 2
+     }
+    ],
+    "parse_source": "cache",
+    "parse_model": null,
+    "timings": {
+     "parse_ms": 2,
+     "embed_ms": 120,
+     "search_ms": 24,
+     "rerank_ms": 10845,
+     "total_ms": 10991
+    },
+    "english": "comfortable shoes for standing all day at work",
+    "slots": [
+     "comfortable shoes for standing all day at work"
+    ]
+   },
+   {
+    "id": "yoga_cheap",
+    "lang": "en",
+    "group": null,
+    "q": "yoga pants for women under $30",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 16,
+    "constraint_n": 16,
+    "seconds": 15.500128030776978,
+    "top": [
+     {
+      "title": "Neonysweets Women Sports Yoga Workout Leggings Hidden Pocket",
+      "category": "bottoms",
+      "price": 23.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Aoxjox Women's High Waist Workout Gym Vital Seamless Leggings Yoga Pants",
+      "category": "bottoms",
+      "price": 26.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Oalka Women's Joggers High Waist Yoga Pockets Sweatpants Sport Workout Pants",
+      "category": "bottoms",
+      "price": 22.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Lookatool Women's High Waist Fitness Yoga Sport Pants (L, Hot Pink)",
+      "category": "bottoms",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Leggings Depot High Waist Printed Athletic Pants for Women with Pockets for Yoga, Workout,",
+      "category": "bottoms",
+      "price": 15.99,
+      "gender": "women",
+      "grade": 2
+     }
+    ],
+    "parse_source": "llm",
+    "parse_model": "nvidia/nemotron-3-super-120b-a12b:free",
+    "timings": {
+     "parse_ms": 3870,
+     "embed_ms": 652,
+     "search_ms": 37,
+     "rerank_ms": 10940,
+     "total_ms": 15500
+    },
+    "english": "yoga pants for women under $30",
+    "slots": [
+     "women's yoga pants"
+    ]
+   },
+   {
+    "id": "rain_boots_kids",
+    "lang": "en",
+    "group": null,
+    "q": "kids rain boots",
+    "p5": 1.0,
+    "ndcg10": 0.8101238658574904,
+    "constraint_ok": 10,
+    "constraint_n": 10,
+    "seconds": 15.33698296546936,
+    "top": [
+     {
+      "title": "Toddler & Little Girls Youth Pink Polka Dot Rain Snow Boots w/Great Lining, Comfortable (1",
+      "category": "footwear",
+      "price": null,
+      "gender": "kids",
+      "grade": 2
+     },
+     {
+      "title": "KDHAO Baby Kids Comfortable Casual Shoes Winter Girls Boys Lovely Hiking Snow Boots(Todder",
+      "category": "footwear",
+      "price": null,
+      "gender": "kids",
+      "grade": 2
+     },
+     {
+      "title": "QGAKAGO(TM Baby Multicolor Rainbow Cotton Knit Premium Soft Sole Anti-Slip Warm Winter Inf",
+      "category": "footwear",
+      "price": null,
+      "gender": "kids",
+      "grade": 2
+     },
+     {
+      "title": "Kali Basic Comf Boots (Toddler/Little Kid),9 M US Toddler,Black",
+      "category": "footwear",
+      "price": null,
+      "gender": "kids",
+      "grade": 2
+     },
+     {
+      "title": "'dELiAs Toddler Girls' Holographic Winter Character Boots, Size 8 Toddler, Silver/Light Pi",
+      "category": "footwear",
+      "price": null,
+      "gender": "kids",
+      "grade": 2
+     }
+    ],
+    "parse_source": "llm",
+    "parse_model": "nvidia/nemotron-3-super-120b-a12b:free",
+    "timings": {
+     "parse_ms": 4084,
+     "embed_ms": 629,
+     "search_ms": 30,
+     "rerank_ms": 10593,
+     "total_ms": 15337
+    },
+    "english": "kids rain boots",
+    "slots": [
+     "kids rain boots"
+    ]
+   },
+   {
+    "id": "cap",
+    "lang": "en",
+    "group": null,
+    "q": "baseball cap for men",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 12.718643188476562,
+    "top": [
+     {
+      "title": "AMERICAN NEEDLE Fender Guitars Officially Licensed Music Hat OSFA Adjustable New",
+      "category": "headwear",
+      "price": 23.17,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "DisplayGifts Pro UV Protection Baseball Cap Hat Display Case Holder Stand Perfect for Base",
+      "category": "headwear",
+      "price": 44.95,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Lsinyan New Hot Deep Blue Fashion Baseball Snapback Hats and Caps for Men Cool Cotton Adju",
+      "category": "headwear",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "You're Too Close Embroidered Dad Hat 100% Cotton Baseball Cap For Men And Women, Black, OS",
+      "category": "headwear",
+      "price": null,
+      "gender": "unisex",
+      "grade": 2
+     },
+     {
+      "title": "Men's Classic Plain Adjustable Leather Baseball Cap Sports Outdoor Panel Hat Sun Hat, Dark",
+      "category": "headwear",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     }
+    ],
+    "parse_source": "llm",
+    "parse_model": "nvidia/nemotron-3-super-120b-a12b:free",
+    "timings": {
+     "parse_ms": 3472,
+     "embed_ms": 611,
+     "search_ms": 18,
+     "rerank_ms": 8617,
+     "total_ms": 12718
+    },
+    "english": "baseball cap for men",
+    "slots": [
+     "men's baseball cap"
+    ]
+   },
+   {
+    "id": "sunglasses",
+    "lang": "en",
+    "group": null,
+    "q": "polarized sunglasses for driving",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 10.964460849761963,
+    "top": [
+     {
+      "title": "Premium Aviator Polarized Sunglasses Men Women Metal Frame Sun Mirror Glasses for Driving",
+      "category": "eyewear",
+      "price": 13.98,
+      "gender": "unisex",
+      "grade": 2
+     },
+     {
+      "title": "Men's Women's UV400 Polarized Driving Sports Metal Frame Sunglasses",
+      "category": "eyewear",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Ewin E31 Polarized Sports Sunglasses with Case for Men Women Baseball Fishing Golf Driving",
+      "category": "eyewear",
+      "price": null,
+      "gender": "unisex",
+      "grade": 2
+     },
+     {
+      "title": "VEOAY HD Night Driving Glasses Anti Glare Polarized Night Vision Glasses Safe Driving Glas",
+      "category": "eyewear",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Costyle Yellow Night View Vision Polarized Sunglasses Glasses Driving Fishing Sports-(Yell",
+      "category": "eyewear",
+      "price": null,
+      "gender": "unisex",
+      "grade": 2
+     }
+    ],
+    "parse_source": "llm",
+    "parse_model": "nvidia/nemotron-3-super-120b-a12b:free",
+    "timings": {
+     "parse_ms": 3959,
+     "embed_ms": 153,
+     "search_ms": 23,
+     "rerank_ms": 6829,
+     "total_ms": 10964
+    },
+    "english": "polarized sunglasses for driving",
+    "slots": [
+     "polarized sunglasses for driving"
+    ]
+   },
+   {
+    "id": "cocktail",
+    "lang": "en",
+    "group": null,
+    "q": "black cocktail dress for a party",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 12.461109161376953,
+    "top": [
+     {
+      "title": "Kearia Women Short Sleeve Deep V-Neck Sequin Split Bodycon Cocktail Party Dress Black XLar",
+      "category": "dresses",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Zalalus Women's Lace Dresses for Cocktail Wedding Party Elegant High Neck Short Sleeves Ab",
+      "category": "dresses",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "VETIOR Women's Vintage Scoop Neck Midi Dress Sleeveless A-line Cocktail Party Dress Large ",
+      "category": "dresses",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Miusol Women's Vintage Floral Lace Cocktail Evening Party Dress,Black and Purple,X-Large",
+      "category": "dresses",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "VETIOR Womens Summer Dress Floral Vintage Cocktail Party Dress(Black,M)",
+      "category": "dresses",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     }
+    ],
+    "parse_source": "llm",
+    "parse_model": "nvidia/nemotron-3-super-120b-a12b:free",
+    "timings": {
+     "parse_ms": 2681,
+     "embed_ms": 247,
+     "search_ms": 15,
+     "rerank_ms": 9517,
+     "total_ms": 12461
+    },
+    "english": "black cocktail dress for a party",
+    "slots": [
+     "black cocktail dress for a party"
+    ]
+   },
+   {
+    "id": "socks",
+    "lang": "en",
+    "group": null,
+    "q": "cotton socks multipack",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 12.702316045761108,
+    "top": [
+     {
+      "title": "Bienvenu lady's 4 Pack Pattern Warm Cotton Crew Socks,Multicolor 3",
+      "category": "underwear_socks",
+      "price": null,
+      "gender": null,
+      "grade": 2
+     },
+     {
+      "title": "YUEDGE Women's 3Pack Multi Performance Outdoor Hiking Trekking Cushion Crew Socks, L(Women",
+      "category": "underwear_socks",
+      "price": null,
+      "gender": "unisex",
+      "grade": 2
+     },
+     {
+      "title": "Pack of 6 Mens Dress Socks,Cotton Socks,Crew Socks,Classic Comfortable Soft Socks For Men ",
+      "category": "underwear_socks",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "5-pack Men's Ultra thin Breathable Cotton Dress Socks, 5-pack,Black,Medium",
+      "category": "underwear_socks",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Cute Animal Design Women's Casual Comfortable Cotton Crew 4-Pack Socks",
+      "category": "underwear_socks",
+      "price": null,
+      "gender": "women",
+      "grade": 2
+     }
+    ],
+    "parse_source": "llm",
+    "parse_model": "nvidia/nemotron-3-super-120b-a12b:free",
+    "timings": {
+     "parse_ms": 2888,
+     "embed_ms": 333,
+     "search_ms": 24,
+     "rerank_ms": 9457,
+     "total_ms": 12702
+    },
+    "english": "cotton socks multipack",
+    "slots": [
+     "cotton socks multipack"
+    ]
+   },
+   {
+    "id": "watch",
+    "lang": "en",
+    "group": null,
+    "q": "men's watch with leather strap",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 10,
+    "constraint_n": 10,
+    "seconds": 11.396682024002075,
+    "top": [
+     {
+      "title": "Kenneth Cole New York Men's 'Transparency' Quartz Stainless Steel and Leather Casual Watch",
+      "category": "watches",
+      "price": 94.95,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Brown Leather Strap Watches for Men - Easy to Reader Week and Date Waterproof Business Dre",
+      "category": "watches",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Nixon Men's Quartz Watch The Ride Brown / Black A315562-00 with Leather Strap",
+      "category": "watches",
+      "price": 299.99,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Men's Watches Luxury Casual Dress Chronograph Calendar Waterproof Military Quartz Wristwat",
+      "category": "watches",
+      "price": 19.0,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Voeons Mens Watches Luminous Hands Auto Date Brown Leather Strap Watch",
+      "category": "watches",
+      "price": null,
+      "gender": "men",
+      "grade": 2
+     }
+    ],
+    "parse_source": "llm",
+    "parse_model": "nvidia/nemotron-3-super-120b-a12b:free",
+    "timings": {
+     "parse_ms": 2048,
+     "embed_ms": 209,
+     "search_ms": 22,
+     "rerank_ms": 9118,
+     "total_ms": 11397
+    },
+    "english": "men's watch with leather strap",
+    "slots": [
+     "men's watch with leather strap"
+    ]
+   },
+   {
+    "id": "gym_tee",
+    "lang": "en",
+    "group": null,
+    "q": "gym t-shirt for men under $25",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 20,
+    "constraint_n": 20,
+    "seconds": 12.355081796646118,
+    "top": [
+     {
+      "title": "SPORT-TEK Men's PosiCharge Competitor Tee",
+      "category": "tops",
+      "price": 9.79,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "ZUEVI Muscle Tank Tops for Men Cut Open Sides Bodybuilding Vest Gym Workout Stringer T-Shi",
+      "category": "tops",
+      "price": 24.5,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Aiyino Men's Short Sleeve Athletic T-Shirt Classic Top Casual Workout Sports Summer Shirts",
+      "category": "tops",
+      "price": 17.99,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "Cot-Oath Mens Workout Sweatshirt Athletic Hoodies - Stylish Gym Running Hoodies Lightweigh",
+      "category": "tops",
+      "price": 21.66,
+      "gender": "men",
+      "grade": 2
+     },
+     {
+      "title": "NELEUS Men's 3 Pack Dry Fit Y-Back Muscle Tank Top",
+      "category": "tops",
+      "price": 23.95,
+      "gender": "men",
+      "grade": 2
+     }
+    ],
+    "parse_source": "llm",
+    "parse_model": "nvidia/nemotron-3-super-120b-a12b:free",
+    "timings": {
+     "parse_ms": 4427,
+     "embed_ms": 277,
+     "search_ms": 22,
+     "rerank_ms": 7629,
+     "total_ms": 12355
+    },
+    "english": "gym t-shirt for men under $25",
+    "slots": [
+     "men's gym t-shirt"
+    ]
+   },
+   {
+    "id": "gloves",
+    "lang": "en",
+    "group": null,
+    "q": "winter gloves for cold weather",
+    "p5": 1.0,
+    "ndcg10": 1.0,
+    "constraint_ok": 0,
+    "constraint_n": 0,
+    "seconds": 14.738873720169067,
+    "top": [
+     {
+      "title": "SKYDEER 3M Thinsulate Thermal Winter Work Gloves with Windproof Premium Genuine Deerskin S",
+      "category": "accessories",
+      "price": 24.99,
+      "gender": "unisex",
+      "grade": 2
+     },
+     {
+      "title": "Womens Leather Winter Gloves - Touchscreen Deerskin Suede Thermal Cashmere Adjustable Wris",
+      "category": "accessories",
+      "price": 19.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Dimore 3 Pairs Winter Gloves for Women Cold Weather Girls With Touch Screen Fingers Warm T",
+      "category": "accessories",
+      "price": 14.99,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "OZERO Waterproof Winter Gloves Men Women -30 ℉ Cold Proof Touchscreen Anti Slip Silicon Pa",
+      "category": "accessories",
+      "price": 29.96,
+      "gender": "women",
+      "grade": 2
+     },
+     {
+      "title": "Waterproof Winter Gloves for Ski , Cycling , Motorcycling and Running,for Men and Women (L",
+      "category": "accessories",
+      "price": null,
+      "gender": "unisex",
+      "grade": 2
+     }
+    ],
+    "parse_source": "llm",
+    "parse_model": "nvidia/nemotron-3-super-120b-a12b:free",
+    "timings": {
+     "parse_ms": 5738,
+     "embed_ms": 608,
+     "search_ms": 24,
+     "rerank_ms": 8369,
+     "total_ms": 14739
+    },
+    "english": "winter gloves for cold weather",
+    "slots": [
+     "winter gloves for cold weather"
+    ]
+   }
+  ]
+ }
+}

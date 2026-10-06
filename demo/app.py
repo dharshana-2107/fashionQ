@@ -42,6 +42,8 @@ p.fq-sub { color:var(--muted); font-size:1.05rem; margin:0 0 1rem 0; }
 .fq-price { font-weight:700; color:var(--ink); }
 .fq-new { background:var(--marigold); color:var(--ink); font-weight:700; font-size:.72rem;
   border-radius:4px; padding:.05rem .4rem; margin-left:.3rem; }
+.fq-noimg { display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:.85rem;
+  background:var(--line) !important; }
 .fq-img { width:100%; aspect-ratio:1/1; object-fit:contain; background:#fff; border:1px solid var(--line); border-radius:6px; }
 </style>
 """, unsafe_allow_html=True)
@@ -263,6 +265,8 @@ for slot in res.get("slots", []):
                 if it.get("image_url"):
                     st.markdown(f'<img class="fq-img" src="{esc(it["image_url"])}" alt="">',
                                 unsafe_allow_html=True)
+                else:  # keep cards aligned when a product has no photo
+                    st.markdown('<div class="fq-img fq-noimg">no photo</div>', unsafe_allow_html=True)
                 new = '<span class="fq-new">NEW</span>' if it.get("is_new") else ""
                 if it.get("parent_asin") and it.get("parent_asin") == st.session_state.get("highlight"):
                     new += '<span class="fq-new" style="background:#1F2A44;color:#fff">YOU PICKED</span>'
