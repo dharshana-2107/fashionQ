@@ -11,6 +11,7 @@ import httpx
 import streamlit as st
 
 API_URL = os.environ.get("FASHIONQ_API", "http://localhost:8000")
+CATALOG_URL = os.environ.get("FASHIONQ_CATALOG", "http://localhost:8001")
 
 EXAMPLES = [
     ("Beach outfit", "outfit for the beach this summer"),
@@ -60,6 +61,63 @@ def api_search(q: str, k: int, llm: bool, rerank: bool) -> dict:
     return r.json()
 
 
+def catalog(method: str, path: str, json_body: dict | None = None, **params) -> dict | None:
+    try:
+        r = httpx.request(method, f"{CATALOG_URL}{path}", params=params, json=json_body, timeout=10)
+        r.raise_for_status()
+        return r.json()
+    except httpx.HTTPStatusError as e:
+        try:
+            st.session_state.catalog_msg = str(e.response.json().get("detail", e))
+        except Exception:
+            st.session_state.catalog_msg = str(e)
+    except Exception:
+        st.session_state.catalog_msg = ("Catalog service isn't running. Start it with "
+                                        "`uvicorn services.catalog.api:app --port 8001`.")
+    return None
+
+
+def _find(asin: str, title: str) -> None:
+    st.session_state.q = " ".join((title or "").split()[:8])
+    st.session_state.highlight = asin
+
+
+def _review(asin: str, stars: int) -> None:
+    res = catalog("POST", f"/products/{asin}/reviews", json_body={"rating": stars})
+    if res:
+        st.session_state.catalog_msg = (f"Review added: now {res['review_count']} reviews, "
+                                        f"avg {res['avg_rating']:.2f}. Ratings update without re-embedding.")
+
+
+def _discount(asin: str) -> None:
+    prod = catalog("GET", f"/products/{asin}")
+    if prod and prod.get("price"):
+        new_price = round(prod["price"] * 0.9, 2)
+        if catalog("PATCH", f"/products/{asin}", json_body={"price": new_price}):
+            st.session_state.catalog_msg = f"Price changed to ${new_price:.2f} (payload-only update)."
+    elif prod:
+        st.session_state.catalog_msg = "This product has no price to discount."
+
+
+def _remove(asin: str) -> None:
+    if catalog("POST", f"/products/{asin}/deactivate"):
+        st.session_state.catalog_msg = "Removed. It disappears from search in a moment."
+
+
+EVENT_LABELS = {"product.created": "new product", "product.updated": "text changed",
+                "product.enriched": "LLM enrichment saved", "product.changed": "price/details changed",
+                "product.reviewed": "new review", "product.deactivated": "removed"}
+
+
+def status_label(stt: dict) -> str:
+    state, secs = stt.get("state"), stt.get("latency_ms", 0) / 1000
+    return {"indexed": f"embedded, searchable after {secs:.1f}s",
+            "payload": f"updated after {secs:.1f}s, no re-embedding",
+            "removed": f"removed from search after {secs:.1f}s",
+            "failed": "indexing failed (see worker)",
+            "skipped": "skipped (inactive)"}.get(state, "waiting for the indexer…")
+
+
 def esc(s) -> str:
     return (str(s or "")).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
@@ -79,6 +137,56 @@ with st.sidebar:
     else:
         st.error("Search service isn't running. Start it with:\n\n"
                  "`uvicorn services.search.api:app --port 8000`")
+
+    st.divider()
+    st.subheader("Live catalog")
+    st.caption("Every change in Postgres is picked up by a trigger and reaches search within seconds.")
+    with st.form("add_product", clear_on_submit=True):
+        new_title = st.text_input("Product title", placeholder="Women's Linen Wide Leg Pants Beige")
+        fc1, fc2 = st.columns(2)
+        new_price = fc1.number_input("Price ($)", min_value=0.0, value=29.99, step=1.0)
+        new_dept = fc2.selectbox("Department", ["Womens", "Mens", "Unisex-adult", "Girls", "Boys"])
+        new_img = st.text_input("Image URL (optional)")
+        new_feats = st.text_area("Features (one per line, optional)", height=68)
+        if st.form_submit_button("Add product", use_container_width=True):
+            if len(new_title.strip()) < 3:
+                st.session_state.catalog_msg = "Please enter a product title."
+            else:
+                body = {"title": new_title.strip(), "price": new_price, "details": {"Department": new_dept},
+                        "image_url": new_img.strip() or None,
+                        "features": [f.strip() for f in new_feats.splitlines() if f.strip()]}
+                res = catalog("POST", "/products", json_body=body)
+                if res:
+                    st.session_state.catalog_msg = f"Added {res['parent_asin']}. Click Refresh to watch it index."
+    st.button("Refresh", use_container_width=True)
+    if st.session_state.get("catalog_msg"):
+        st.info(st.session_state.pop("catalog_msg"))
+    recent = catalog("GET", "/recent", n=8)
+    if recent:
+        for e in recent["events"]:
+            title = e.get("title") or e["asin"]
+            st.markdown(f'<div class="fq-meta"><b>{esc(title[:70])}</b><br>'
+                        f'{esc(EVENT_LABELS.get(e["type"], e["type"]))}: '
+                        f'{esc(status_label(e.get("status", {})))}</div>', unsafe_allow_html=True)
+            if e["type"] != "product.deactivated":
+                with st.popover("Actions", use_container_width=True):
+                    st.button("Find in search", key=f"find-{e['id']}", on_click=_find, args=(e["asin"], title),
+                              use_container_width=True)
+                    st.button("Add a 5★ review", key=f"r5-{e['id']}", on_click=_review, args=(e["asin"], 5),
+                              use_container_width=True)
+                    st.button("Add a 1★ review", key=f"r1-{e['id']}", on_click=_review, args=(e["asin"], 1),
+                              use_container_width=True)
+                    st.button("Price −10%", key=f"disc-{e['id']}", on_click=_discount, args=(e["asin"],),
+                              use_container_width=True)
+                    st.button("Remove from store", key=f"rm-{e['id']}", on_click=_remove, args=(e["asin"],),
+                              use_container_width=True)
+        stats = catalog("GET", "/stats")
+        if stats:
+            if not stats.get("triggers_installed"):
+                st.warning("Triggers not installed: run `python -m scripts.install_triggers`.")
+            st.caption(f"{stats['active_products']:,} products in the store; "
+                       f"outbox backlog {stats.get('outbox_backlog') or 0}; "
+                       f"{stats.get('pending_events') or 0} events in progress")
 
 # ---------------------------------------------------------------- header + input
 st.markdown('<h1 class="fq-title">FashionQ</h1>', unsafe_allow_html=True)
@@ -156,6 +264,8 @@ for slot in res.get("slots", []):
                     st.markdown(f'<img class="fq-img" src="{esc(it["image_url"])}" alt="">',
                                 unsafe_allow_html=True)
                 new = '<span class="fq-new">NEW</span>' if it.get("is_new") else ""
+                if it.get("parent_asin") and it.get("parent_asin") == st.session_state.get("highlight"):
+                    new += '<span class="fq-new" style="background:#1F2A44;color:#fff">YOU PICKED</span>'
                 st.markdown(f'<div class="fq-title-txt">{esc(it.get("title"))}{new}</div>',
                             unsafe_allow_html=True)
                 price = (f'<span class="fq-price">${it["price"]:.2f}</span>  ' if it.get("price")

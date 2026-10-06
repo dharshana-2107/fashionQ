@@ -33,6 +33,7 @@ MIN_RESULTS = 4   # relax filters below this
 # Formal queries: casual items sink, formal items rise (formality comes from title rules).
 FORMAL_BONUS, CASUAL_PENALTY = 0.10, 0.25
 OWN_CATEGORY_BONUS = 0.06  # shirts first in a "top" slot, then blazers/suits
+NEW_BOOST = 0.03  # new arrivals win ties against look-alike older listings
 NO_PRICE_PENALTY = 0.05  # price was asked for, but this item has no listed price
 _FORMAL_QUERY = re.compile(r"\b(formal|office|business|meeting|interview|wedding|suit|blazer|tuxedo|gala|"
                            r"conference|ceremony|professional|corporate)\b", re.I)
@@ -209,6 +210,7 @@ def search(query: str, k: int = 6, use_llm: bool = True, use_rerank: bool = True
             final = (W_RELEVANCE * relevance + W_RATING * _rating_norm(p) + _tag_boost(p, pq)
                      + _style_adjust(p, formal_query)
                      + (OWN_CATEGORY_BONUS if slot.category and p.get("category") == slot.category else 0.0)
+                     + (NEW_BOOST if p.get("is_new") else 0.0)
                      - (NO_PRICE_PENALTY if price_asked and p.get("price") is None else 0.0))
             scored.append((final, r, p))
         scored.sort(key=lambda x: -x[0])

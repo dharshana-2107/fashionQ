@@ -12,6 +12,7 @@ import threading
 from functools import lru_cache
 
 from common.config import settings
+from common.gpu import GPU_LOCK
 from common.device import get_device, use_fp16
 
 MAX_LENGTH = 512
@@ -30,7 +31,7 @@ class Reranker:
             self.model = FlagReranker(settings.rerank_model, use_fp16=fp16, devices=self.device)
         except TypeError:  # older FlagEmbedding
             self.model = FlagReranker(settings.rerank_model, use_fp16=fp16, device=self.device)
-        self._lock = threading.Lock()
+        self._lock = GPU_LOCK  # shared with every other model: MPS is not thread-safe
 
     def score(self, pairs: list[tuple[str, str]], batch_size: int = 32) -> list[float]:
         """Scores in 0..1 (sigmoid-normalized), one per (query, document) pair."""

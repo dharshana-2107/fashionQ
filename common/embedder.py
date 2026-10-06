@@ -19,6 +19,7 @@ from typing import Sequence
 import numpy as np
 
 from common.config import settings
+from common.gpu import GPU_LOCK
 from common.device import get_device, use_fp16
 
 DENSE_DIM = 1024        # BGE-M3 dense vector size
@@ -58,7 +59,7 @@ class Embedder:
             self.model = BGEM3FlagModel(self.model_name, use_fp16=fp16, devices=self.device)
         except TypeError:  # older FlagEmbedding used `device=`
             self.model = BGEM3FlagModel(self.model_name, use_fp16=fp16, device=self.device)
-        self._lock = threading.Lock()  # the model is not safe to call from 2 threads at once
+        self._lock = GPU_LOCK  # shared with every other model: MPS is not thread-safe
 
     def encode(self, texts: Sequence[str], batch_size: int = 16,
                max_length: int = DOC_MAX_TOKENS) -> list[Embedding]:
