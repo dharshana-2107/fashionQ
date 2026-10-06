@@ -9,3 +9,4 @@ models_cache/
 .DS_Store
 .idea/
 .vscode/
+*.sql
